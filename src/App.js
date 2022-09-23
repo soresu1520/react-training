@@ -1,25 +1,43 @@
-import logo from "./logo.svg";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import styled from "styled-components";
 import "./App.css";
+import FoodList from "./foodlist/FoodList";
+import OrdersList from "./orders/OrdersList";
+import OrderSummary from "./summary/OrderSummary";
+import Footer from "./other/Footer";
+import ShoppingCart from "./cart/ShoppingCart";
+import Navbar from "./other/Navbar";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <AppDiv>
+      <BrowserRouter>
+        <Navbar></Navbar>
+
+        <Routes>
+          <Route path="/" element={<FoodList />} />
+          <Route path="/cart" element={<ShoppingCart />} />
+          <Route path="/summary" element={<OrderSummary />} />
+          <Route path="/orders" element={<OrdersList />} />
+        </Routes>
+      </BrowserRouter>
+
+      <FooterDiv>
+        <Footer></Footer>
+      </FooterDiv>
+    </AppDiv>
   );
 }
 
 export default App;
+
+const AppDiv = styled.div`
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  image.png
+`;
+
+const FooterDiv = styled.footer`
+  margin-top: auto;
+`;

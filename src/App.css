@@ -1,38 +1,125 @@
-.App {
-  text-align: center;
+:root {
+  --color-dark-icon: #1c1b1f;
+  --color-white: #ffffff;
+  --color-brand-50: #93ffab;
+  --color-brand-100: #7bf695;
+  --color-brand-200: #63de80;
+  --color-brand-300: #4ac86b;
+  --color-brand-400: #2eb157;
+  --color-brand-500: #009b43;
+  --color-brand-600: #00862f;
+  --color-brand-700: #00711c;
+  --color-brand-800: #005c05;
+  --color-brand-900: #004800;
+  --color-brand-20: #daf6e4;
+  --color-greyscale-50: #f3f3f3;
+  --color-greyscale-100: #dddddd;
+  --color-greyscale-200: #c6c6c6;
+  --color-greyscale-300: #b0b0b0;
+  --color-greyscale-400: #9b9b9b;
+  --color-greyscale-500: #868686;
+  --color-greyscale-600: #727272;
+  --color-greyscale-700: #5e5e5e;
+  --color-greyscale-800: #4b4b4b;
+  --color-greyscale-900: #393939;
+  --color-light-50: #f0f4fa;
+  --color-light-100: #d9dde3;
+  --color-light-200: #c3c7cd;
+  --color-light-300: #adb1b7;
+  --color-light-400: #989ba1;
+  --color-light-500: #83878c;
+  --color-light-600: #6f7278;
+  --color-light-700: #5b5f64;
+  --color-light-800: #484c51;
+  --color-light-900: #36393e;
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.text-style-heading-6 {
+  font-size: 0.85rem;
+  font-family: "Poppins";
+  font-weight: 500;
+  font-style: normal;
+  line-height: 24px;
+  text-decoration: none;
+  text-transform: none;
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.text-style-heading-5 {
+  font-size: 1rem;
+  font-family: "Poppins";
+  font-weight: 500;
+  font-style: normal;
+  line-height: 24px;
+  text-decoration: none;
+  text-transform: none;
 }
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.text-style-heading-4 {
+  font-size: 1.375rem;
+  font-family: "Poppins";
+  font-weight: 500;
+  font-style: normal;
+  line-height: 30px;
+  text-decoration: none;
+  text-transform: none;
 }
-
-.App-link {
-  color: #61dafb;
+.text-style-heading-3 {
+  font-size: 1.5rem;
+  font-family: "Poppins";
+  font-weight: 500;
+  font-style: normal;
+  line-height: 37px;
+  text-decoration: none;
+  text-transform: none;
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.text-style-heading-2 {
+  font-size: 2.25rem;
+  font-family: "Poppins";
+  font-weight: 500;
+  font-style: normal;
+  line-height: 47px;
+  text-decoration: none;
+  text-transform: none;
+}
+.text-style-heading-1 {
+  font-size: 2.5rem;
+  font-family: "Poppins";
+  font-weight: 500;
+  font-style: normal;
+  line-height: 60px;
+  text-decoration: none;
+  text-transform: none;
+}
+.text-style-label {
+  font-size: 0.938rem;
+  font-family: "Poppins";
+  font-weight: 400;
+  font-style: normal;
+  line-height: 120%;
+  text-decoration: none;
+  text-transform: none;
+}
+.text-style-paragraph-large {
+  font-size: 1.625rem;
+  font-family: "Inter";
+  font-weight: 400;
+  font-style: normal;
+  line-height: 150%;
+  text-decoration: none;
+  text-transform: none;
+}
+.text-style-paragraph-big {
+  font-size: 1.375rem;
+  font-family: "Inter";
+  font-weight: 400;
+  font-style: normal;
+  line-height: 150%;
+  text-decoration: none;
+  text-transform: none;
+}
+.text-style-paragraph-medium {
+  font-size: 1rem;
+  font-family: "Inter";
+  font-weight: 400;
+  font-style: normal;
+  line-height: 150%;
+  text-decoration: none;
+  text-transform: none;
 }
