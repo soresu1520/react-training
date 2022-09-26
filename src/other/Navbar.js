@@ -3,34 +3,60 @@ import logo from "./assets/icon.png";
 import ReorderIcon from "@mui/icons-material/Reorder";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import Badge from "@mui/material/Badge";
+import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { getCartItems } from "../server/API";
 
 const Navbar = () => {
+  const [quantity, setQuantity] = useState(0);
+
+  //context?
+  useEffect(() => {
+    fetchCart();
+  });
+
+  const fetchCart = async () => {
+    try {
+      const response = await getCartItems();
+      const cartQuantity = response.data.length;
+      setQuantity(cartQuantity);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
     <DivHeader>
       <Header>
         <DivImage>
-          <img src={logo} alt="logo" />
+          <Link to="/">
+            <img src={logo} alt="logo" />
+          </Link>
         </DivImage>
         <Title>Click and Eat</Title>
         <DivIcon>
-          <ReorderIcon
-            sx={{
-              color: "var(--color-dark-icon)",
-              fontSize: 40,
-              marginLeft: "0.25em",
-              marginRight: "0.25em",
-            }}
-          ></ReorderIcon>
-          <StyledBadge badgeContent={1} max={99}>
-            <ShoppingCartOutlinedIcon
+          <Link to="/orders">
+            <ReorderIcon
               sx={{
                 color: "var(--color-dark-icon)",
                 fontSize: 40,
                 marginLeft: "0.25em",
                 marginRight: "0.25em",
               }}
-            ></ShoppingCartOutlinedIcon>
-          </StyledBadge>
+            ></ReorderIcon>
+          </Link>
+          <Link to="/cart">
+            <StyledBadge badgeContent={quantity} max={99}>
+              <ShoppingCartOutlinedIcon
+                sx={{
+                  color: "var(--color-dark-icon)",
+                  fontSize: 40,
+                  marginLeft: "0.25em",
+                  marginRight: "0.25em",
+                }}
+              ></ShoppingCartOutlinedIcon>
+            </StyledBadge>
+          </Link>
         </DivIcon>
       </Header>
     </DivHeader>
@@ -60,6 +86,7 @@ const Header = styled.header`
 
 const DivImage = styled.div`
   flex: 1;
+  margin-top: 0.3em;
 `;
 
 const Title = styled.h1`

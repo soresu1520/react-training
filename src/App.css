@@ -32,6 +32,8 @@
   --color-light-700: #5b5f64;
   --color-light-800: #484c51;
   --color-light-900: #36393e;
+
+  --margin-to-navbar: 1.2em;
 }
 .text-style-heading-6 {
   font-size: 0.85rem;
