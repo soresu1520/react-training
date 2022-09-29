@@ -1,36 +1,34 @@
 import styled from "styled-components";
-import { getCartItem, postToCart } from "../server/API";
 import SnackbarMessage from "../other/SnackbarMessage";
 import { useContext } from "react";
-import SnackbarContext from "../context/SnackbarContext";
+import SnackbarContext from "../../context/SnackbarContext";
+import { Button } from "../../styles/StyledComponents";
 
 const FoodItem = ({ foodItem }) => {
   const [snackInfo, setSnackInfo] = useContext(SnackbarContext);
 
-  const addItemToCart = async () => {
-    const foodObject = { ...foodItem, quantity: 1 };
-    let isInCart = false;
-
+  const addItemToCart = () => {
     try {
-      await getCartItem(foodItem.id);
-      isInCart = true;
-    } catch (error) {
-      console.log(error);
-      if (error.response.status === "404") {
-        isInCart = false;
-      }
-    }
-
-    try {
-      if (!isInCart) {
-        await postToCart(foodObject);
-        setSnackInfo({ open: true, message: "Item added to cart!", type: "success" });
+      const cart = JSON.parse(localStorage.getItem("cart")) || [];
+      const isInCart = cart.findIndex(e => e.productId === foodItem.id);
+      if (isInCart > -1) {
+        cart[isInCart].quantity = cart[isInCart].quantity + 1;
       } else {
-        setSnackInfo({ open: true, message: "Item is already in the cart!", type: "info" });
+        cart.push({
+          productId: foodItem.id,
+          name: foodItem.name,
+          price: foodItem.price,
+          categoryId: foodItem.categoryId,
+          image: foodItem.image,
+          quantity: 1,
+        });
       }
-    } catch (error) {
-      console.error(error);
-      setSnackInfo({ open: true, message: "Item couldn't be added to cart", type: "error" });
+      setSnackInfo({ open: true, message: "Item added to cart!", type: "success" });
+      console.log(cart);
+      localStorage.setItem("cart", JSON.stringify(cart));
+    } catch (e) {
+      console.log(e);
+      setSnackInfo({ open: true, message: "Error. Try Again", type: "error" });
     }
   };
 
@@ -40,7 +38,7 @@ const FoodItem = ({ foodItem }) => {
         <CardTitle>{foodItem.name}</CardTitle>
         <CardSubtitle>$ {foodItem.price.toFixed(2)}</CardSubtitle>
       </DivTitle>
-      <Image src={require(`../assets/${foodItem.image}`)} alt="pancakes" />
+      <Image src={`/assets/food/${foodItem.image}`} alt={foodItem.name} />
       <DivButton>
         <Button onClick={addItemToCart}>Add to cart</Button>
       </DivButton>
@@ -68,16 +66,16 @@ const DivTitle = styled.div`
 `;
 
 const CardTitle = styled.h3`
-  font-size: 1.15rem;
-  font-weight: 500;
+  font-size: var(--font-size-h3);
+  font-weight: var(--font-weight-heading-light);
   color: var(--color-dark-icon);
   margin-bottom: 0.1em;
   margin-top: 0.5em;
 `;
 
 const CardSubtitle = styled.h4`
-  font-size: 1rem;
-  font-weight: 500;
+  font-size: var(--font-size-h4);
+  font-weight: var(--font-weight-heading-light);
   color: var(--color-brand-500);
   margin-top: 0.1em;
   margin-bottom: 0.5em;
@@ -93,17 +91,4 @@ const DivButton = styled.div`
   flex-direction: row;
   justify-content: center;
   algin-items: center;
-`;
-
-const Button = styled.button`
-  background: var(--color-brand-300);
-  color: var(--color-dark-icon);
-  border-radius: 5px;
-  border: none;
-  font-weight: 600;
-  font-size: 1rem;
-  padding: 0.6em;
-  margin-top: 0.75em;
-  margin-bottom: 0.75em;
-  cursor: pointer;
 `;

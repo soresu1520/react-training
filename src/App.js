@@ -1,13 +1,13 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useState } from "react";
-import styled from "styled-components";
 import "./App.css";
-import FoodList from "./foodlist/FoodList";
-import OrdersList from "./orders/OrdersList";
-import OrderSummary from "./summary/OrderSummary";
-import Footer from "./other/Footer";
-import ShoppingCart from "./cart/ShoppingCart";
-import Navbar from "./other/Navbar";
+import styled from "styled-components";
+import FoodList from "./components/foodlist/FoodList";
+import OrdersList from "./components/orders/OrdersList";
+import OrderSummary from "./components/summary/OrderSummary";
+import Footer from "./components/other/Footer";
+import ShoppingCart from "./components/cart/ShoppingCart";
+import Navbar from "./components/other/Navbar";
 import SnackbarContext from "./context/SnackbarContext";
 
 function App() {
@@ -41,7 +41,6 @@ const AppDiv = styled.div`
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  image.png
 `;
 
 const FooterDiv = styled.footer`

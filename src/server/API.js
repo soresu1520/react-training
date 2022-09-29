@@ -1,25 +1,10 @@
 import axios from "axios";
+import configServer from "./config.json";
 
 export function getAllFood() {
-  return axios.get(`http://localhost:3000/food`);
+  return axios.get(`${configServer.SERVER_URL}food`);
 }
 
-export function getFood(url) {
-  return axios.get(`http://localhost:3000/food${url}`);
-}
-
-export function postToCart(item) {
-  return axios.post(`http://localhost:3000/cart`, item);
-}
-
-export function putToCart(id, item) {
-  return axios.put(`http://localhost:3000/cart/${id}`, item);
-}
-
-export function getCartItems() {
-  return axios.get("http://localhost:3000/cart");
-}
-
-export function getCartItem(id) {
-  return axios.get(`http://localhost:3000/cart/${id}`);
+export function getCategories() {
+  return axios.get(`${configServer.SERVER_URL}category`);
 }

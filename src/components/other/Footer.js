@@ -1,7 +1,4 @@
 import styled from "styled-components";
-import facebook from "./assets/facebook-fill.png";
-import twitter from "./assets/twitter-fill.png";
-import instagram from "./assets/instagram-line.png";
 
 const Footer = () => {
   return (
@@ -15,9 +12,9 @@ const Footer = () => {
       </ElementDiv>
 
       <ElementDiv>
-        <Image src={twitter} alt="twitter" />
-        <Image src={instagram} alt="instagram" />
-        <Image src={facebook} alt="facebook" />
+        <Image src="/assets/socialmedia/twitter-fill.png" alt="twitter" />
+        <Image src="/assets/socialmedia/instagram-line.png" alt="instagram" />
+        <Image src="/assets/socialmedia/facebook-fill.png" alt="facebook" />
       </ElementDiv>
 
       <FooterCopyright>
@@ -39,7 +36,6 @@ const FooterDiv = styled.div`
 
 const ElementDiv = styled.div`
   display: flex;
-  flex-direction: row;
   flex-flow: row wrap;
   justify-content: center;
 `;
@@ -50,16 +46,16 @@ const Image = styled.img`
 `;
 
 const FooterCopyright = styled.h5`
-  font-size: 0.85rem;
+  font-size: var(--font-size-h5);
   color: var(--color-greyscale-200);
-  font-weight: 400;
+  font-weight: var(--font-weight-heading-light);
   margin-top: 1em;
 `;
 
 const FooterText = styled.h5`
-  font-size: 0.85rem;
+  font-size: var(--font-size-h5);
   color: var(--color-greyscale-600);
-  font-weight: 400;
+  font-weight: var(--font-weight-heading-light);
   padding-left: 1rem;
   padding-right: 1rem;
   margin-bottom: 1em;

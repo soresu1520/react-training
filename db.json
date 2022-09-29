@@ -1,96 +1,68 @@
 {
+  "category": [
+    {
+      "categoryName": "Salad",
+      "categoryId": "c1"
+    },
+    {
+      "categoryName": "Dessert",
+      "categoryId": "c2"
+    },
+    {
+      "categoryName": "Mexican",
+      "categoryId": "c3"
+    },
+    {
+      "categoryName": "Japanese",
+      "categoryId": "c4"
+    },
+    {
+      "categoryName": "Pasta",
+      "categoryId": "c5"
+    }
+  ],
   "food": [
     {
       "id": 1,
       "name": "Salad",
       "price": 5,
-      "category": "Salad",
+      "categoryId": "c1",
       "image": "salad.png"
     },
     {
       "id": 2,
       "name": "Pancakes",
       "price": 5,
-      "category": "Dessert",
+      "categoryId": "c2",
       "image": "pancakes.png"
     },
     {
       "id": 3,
       "name": "Tacos",
       "price": 6,
-      "category": "Mexican",
+      "categoryId": "c3",
       "image": "tacos.png"
     },
     {
       "id": 4,
       "name": "Strawberry Cake",
       "price": 4.5,
-      "category": "Dessert",
+      "categoryId": "c2",
       "image": "scake.png"
     },
     {
       "id": 5,
       "name": "Ramen",
       "price": 12,
-      "category": "Japanese",
+      "categoryId": "c4",
       "image": "ramen.png"
     },
     {
       "id": 6,
       "name": "Farfalle",
       "price": 7,
-      "category": "Pasta",
+      "categoryId": "c5",
       "image": "farfalle.png"
-    }
-  ],
-  "cart": [
-    {
-      "id": 6,
-      "name": "Farfalle",
-      "price": 7,
-      "category": "Pasta",
-      "image": "farfalle.png",
-      "quantity": 1
-    },
-    {
-      "id": 5,
-      "name": "Ramen",
-      "price": 12,
-      "category": "Japanese",
-      "image": "ramen.png",
-      "quantity": 1
-    },
-    {
-      "id": 4,
-      "name": "Strawberry Cake",
-      "price": 4.5,
-      "category": "Dessert",
-      "image": "scake.png",
-      "quantity": 1
-    },
-    {
-      "id": 3,
-      "name": "Tacos",
-      "price": 6,
-      "category": "Mexican",
-      "image": "tacos.png",
-      "quantity": 1
-    },
-    {
-      "id": 1,
-      "name": "Salad",
-      "price": 5,
-      "category": "Salad",
-      "image": "salad.png",
-      "quantity": 1
-    },
-    {
-      "id": 2,
-      "name": "Pancakes",
-      "price": 5,
-      "category": "Dessert",
-      "image": "pancakes.png",
-      "quantity": 1
     }
   ]
 }
