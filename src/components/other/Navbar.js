@@ -53,6 +53,7 @@ const DivHeader = styled.div`
   width: 100%;
   box-shadow: 0px 1px 8px rgba(0, 0, 0, 0.25);
   background-color: var(--color-white);
+  z-index: 999;
 `;
 
 const Header = styled.header`

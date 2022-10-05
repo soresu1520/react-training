@@ -10,7 +10,7 @@ import {
   PageTitle,
   PageSubtitle,
   Message,
-  Button,
+  SecondaryButton,
 } from "../../styles/StyledComponents";
 
 const FoodList = () => {
@@ -88,9 +88,9 @@ const FoodList = () => {
       <CategoryDiv>
         {!message ? (
           categories.map((category, i) => (
-            <CategoryButton onClick={() => filterFood(category)} key={i}>
+            <SecondaryButton onClick={() => filterFood(category)} key={i}>
               {category.categoryName}
-            </CategoryButton>
+            </SecondaryButton>
           ))
         ) : (
           <div></div>
@@ -127,12 +127,6 @@ const CategoryDiv = styled.div`
   gap: 2% 2%;
 `;
 
-const CategoryButton = styled(Button)`
-  background: var(--color-brand-20);
-  color: var(--color-brand-500);
-  border: none;
-`;
-
 const DivSelect = styled.div`
   display: flex;
   justify-content: flex-end;
@@ -152,7 +146,6 @@ const Select = styled.select`
   font-family: inherit;
   border: none;
   outline: none;
-
   option {
     text-align: right;
   }

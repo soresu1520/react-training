@@ -47,3 +47,9 @@ export const Button = styled.button`
   margin-bottom: 0.75em;
   cursor: pointer;
 `;
+
+export const SecondaryButton = styled(Button)`
+  background: var(--color-brand-20);
+  color: var(--color-brand-500);
+  border: none;
+`;

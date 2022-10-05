@@ -9,29 +9,33 @@ import Footer from "./components/other/Footer";
 import ShoppingCart from "./components/cart/ShoppingCart";
 import Navbar from "./components/other/Navbar";
 import SnackbarContext from "./context/SnackbarContext";
+import { ThemeProvider } from "@mui/material/styles";
+import { theme } from "./themes/theme";
 
 function App() {
   const snackInfo = useState({ open: false, message: "", type: "" });
 
   return (
-    <SnackbarContext.Provider value={snackInfo}>
-      <AppDiv>
-        <BrowserRouter>
-          <Navbar></Navbar>
+    <ThemeProvider theme={theme}>
+      <SnackbarContext.Provider value={snackInfo}>
+        <AppDiv>
+          <BrowserRouter>
+            <Navbar />
 
-          <Routes>
-            <Route path="/" element={<FoodList />} />
-            <Route path="/cart" element={<ShoppingCart />} />
-            <Route path="/summary" element={<OrderSummary />} />
-            <Route path="/orders" element={<OrdersList />} />
-          </Routes>
-        </BrowserRouter>
+            <Routes>
+              <Route path="/" element={<FoodList />} />
+              <Route path="/cart" element={<ShoppingCart />} />
+              <Route path="/summary" element={<OrderSummary />} />
+              <Route path="/orders" element={<OrdersList />} />
+            </Routes>
+          </BrowserRouter>
 
-        <FooterDiv>
-          <Footer></Footer>
-        </FooterDiv>
-      </AppDiv>
-    </SnackbarContext.Provider>
+          <FooterDiv>
+            <Footer />
+          </FooterDiv>
+        </AppDiv>
+      </SnackbarContext.Provider>
+    </ThemeProvider>
   );
 }
 
