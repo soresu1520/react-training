@@ -36,6 +36,7 @@ const OrderSummary = () => {
 
   const handleSubmit = e => {
     e.preventDefault();
+    //add id and price, change cart items
     setForm({ ...form, data: new Date(), items: [...cart] });
     console.log("submitted");
   };

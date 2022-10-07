@@ -5,6 +5,7 @@ export const PAYMENT_METHODS = [
 ];
 
 export const defaultFormValues = {
+  id: "",
   firstName: "",
   lastName: "",
   street: "",
@@ -15,6 +16,7 @@ export const defaultFormValues = {
   phoneNumber: "",
   notes: "",
   payment: "PayPal",
+  price: 0,
   date: "",
   items: [],
 };

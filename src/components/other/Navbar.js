@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import ReorderIcon from "@mui/icons-material/Reorder";
+import ListAltIcon from "@mui/icons-material/ListAlt";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
@@ -32,7 +32,7 @@ const Navbar = () => {
         <Title>Click and Eat</Title>
         <DivIcon>
           <Link to="/orders">
-            <ReorderIcon sx={navbarIcon}></ReorderIcon>
+            <ListAltIcon sx={navbarIcon}></ListAltIcon>
           </Link>
           <Link to="/cart">
             <StyledBadge badgeContent={quantity} max={99}>

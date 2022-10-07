@@ -64,5 +64,168 @@
       "categoryId": "c5",
       "image": "farfalle.png"
     }
+  ],
+  "orders": [
+    {
+      "id": "1231",
+      "firstName": "Jane",
+      "lastName": "Doe",
+      "street": "Legnicka",
+      "building": "48",
+      "city": "Wrocław",
+      "zip": "54-202",
+      "email": "janedoe@example.com",
+      "phoneNumber": "111111222",
+      "notes": "additional info",
+      "payment": "PayPal",
+      "price": 24.0,
+      "date": "09-20-2022",
+      "items": [
+        {
+          "id": 4,
+          "name": "Strawberry Cake",
+          "quantity": 4
+        },
+        { "id": 4, "name": "Tacos", "quantity": 1 }
+      ]
+    },
+    {
+      "id": "1221",
+      "firstName": "John",
+      "lastName": "Doe",
+      "street": "Kwiatowa",
+      "building": "8",
+      "city": "Wrocław",
+      "zip": "54-202",
+      "email": "johndoe@example.com",
+      "phoneNumber": "771111222",
+      "notes": "",
+      "payment": "PayPal",
+      "price": 24.0,
+      "date": "09-21-2022",
+      "items": [
+        {
+          "id": 4,
+          "name": "Strawberry Cake",
+          "quantity": 4
+        },
+        { "id": 4, "name": "Tacos", "quantity": 1 }
+      ]
+    },
+    {
+      "id": "1222",
+      "firstName": "John",
+      "lastName": "Doe",
+      "street": "Kwiatowa",
+      "building": "8",
+      "city": "Wrocław",
+      "zip": "54-202",
+      "email": "johndoe@example.com",
+      "phoneNumber": "771111222",
+      "notes": "",
+      "payment": "PayPal",
+      "price": 24.0,
+      "date": "09-21-2022",
+      "items": [
+        {
+          "id": 4,
+          "name": "Strawberry Cake",
+          "quantity": 4
+        },
+        { "id": 4, "name": "Tacos", "quantity": 1 }
+      ]
+    },
+    {
+      "id": "1224",
+      "firstName": "John",
+      "lastName": "Doe",
+      "street": "Kwiatowa",
+      "building": "8",
+      "city": "Wrocław",
+      "zip": "54-202",
+      "email": "johndoe@example.com",
+      "phoneNumber": "771111222",
+      "notes": "",
+      "payment": "PayPal",
+      "price": 24.0,
+      "date": "09-21-2022",
+      "items": [
+        {
+          "id": 4,
+          "name": "Strawberry Cake",
+          "quantity": 4
+        },
+        { "id": 4, "name": "Tacos", "quantity": 1 }
+      ]
+    },
+    {
+      "id": "1255",
+      "firstName": "John",
+      "lastName": "Doe",
+      "street": "Kwiatowa",
+      "building": "8",
+      "city": "Wrocław",
+      "zip": "54-202",
+      "email": "johndoe@example.com",
+      "phoneNumber": "771111222",
+      "notes": "",
+      "payment": "PayPal",
+      "price": 24.0,
+      "date": "09-21-2022",
+      "items": [
+        {
+          "id": 4,
+          "name": "Strawberry Cake",
+          "quantity": 4
+        },
+        { "id": 4, "name": "Tacos", "quantity": 1 }
+      ]
+    },
+    {
+      "id": "1266",
+      "firstName": "John",
+      "lastName": "Doe",
+      "street": "Kwiatowa",
+      "building": "8",
+      "city": "Wrocław",
+      "zip": "54-202",
+      "email": "johndoe@example.com",
+      "phoneNumber": "771111222",
+      "notes": "",
+      "payment": "PayPal",
+      "price": 24.0,
+      "date": "09-21-2022",
+      "items": [
+        {
+          "id": 4,
+          "name": "Strawberry Cake",
+          "quantity": 4
+        },
+        { "id": 4, "name": "Tacos", "quantity": 1 }
+      ]
+    },
+    {
+      "id": "1271",
+      "firstName": "John",
+      "lastName": "Doe",
+      "street": "Kwiatowa",
+      "building": "8",
+      "city": "Wrocław",
+      "zip": "54-202",
+      "email": "johndoe@example.com",
+      "phoneNumber": "771111222",
+      "notes": "",
+      "payment": "PayPal",
+      "price": 24.0,
+      "date": "09-21-2022",
+      "items": [
+        {
+          "id": 4,
+          "name": "Strawberry Cake",
+          "quantity": 4
+        },
+        { "id": 4, "name": "Tacos", "quantity": 1 }
+      ]
+    }
   ]
 }

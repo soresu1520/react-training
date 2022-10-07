@@ -34,5 +34,30 @@ export const theme = createTheme({
         },
       },
     },
+    MuiTableCell: {
+      styleOverrides: {
+        root: {
+          color: "var(--dark-icon)",
+          fontFamily: "Poppins",
+          borderBottom: "1px solid var(--color-greyscale-200)",
+          fontSize: "1em",
+        },
+      },
+    },
+    MuiTableBody: {
+      styleOverrides: {
+        root: {
+          borderBottom: "1px solid var(--color-greyscale-200)",
+        },
+      },
+    },
+    MuiTableHead: {
+      styleOverrides: {
+        root: {
+          fontWeight: 500,
+          backgroundColor: "var(--color-greyscale-50)",
+        },
+      },
+    },
   },
 });

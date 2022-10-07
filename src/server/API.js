@@ -8,3 +8,7 @@ export function getAllFood() {
 export function getCategories() {
   return axios.get(`${configServer.SERVER_URL}category`);
 }
+
+export function getOrders() {
+  return axios.get(`${configServer.SERVER_URL}orders`);
+}
