@@ -3,95 +3,111 @@ import TextField from "@mui/material/TextField";
 import { Button } from "../../styles/StyledComponents";
 import { PAYMENT_METHODS } from "./defaultValues";
 import { ToggleButtonGroup, ToggleButton } from "@mui/material";
+import { useForm } from "react-hook-form";
 
-const SummaryForm = ({ handleChange, handleSubmit, form, handlePayment }) => {
+const SummaryForm = ({ handlePayment, payment, onSubmit }) => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
   return (
     <div>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit(onSubmit)}>
         <FormDiv>
           <TextInput
-            required
-            id="firstName"
             label="First Name"
             variant="outlined"
             margin="dense"
-            value={form.firstName}
-            onChange={handleChange}
+            {...register("firstName", { required: "This field is required" })}
+            error={!!errors.firstName}
+            helperText={errors.firstName ? errors.firstName.message : ""}
           />
           <TextInput
-            required
-            id="lastName"
             label="Last Name"
             variant="outlined"
             margin="dense"
-            onChange={handleChange}
-            value={form.lastName}
+            {...register("lastName", { required: "This field is required" })}
+            error={!!errors.lastName}
+            helperText={errors.lastName ? errors.lastName.message : ""}
           />
           <TextInput
-            required
-            id="street"
             label="Street"
             variant="outlined"
             margin="dense"
-            onChange={handleChange}
-            value={form.street}
+            {...register("street", { required: "This field is required" })}
+            error={!!errors.street}
+            helperText={errors.street ? errors.street.message : ""}
           />
           <TextInput
-            required
-            id="building"
             label="Building Number"
             variant="outlined"
             margin="dense"
-            onChange={handleChange}
-            value={form.building}
+            {...register("building", { required: "This field is required" })}
+            error={!!errors.building}
+            helperText={errors.building ? errors.building.message : ""}
           />
+
           <TextInput
-            required
-            id="city"
             label="City"
             variant="outlined"
             margin="dense"
-            onChange={handleChange}
-            value={form.city}
+            {...register("city", { required: "This field is required" })}
+            error={!!errors.city}
+            helperText={errors.city ? errors.city.message : ""}
           />
+
           <TextInput
-            required
-            id="zip"
             label="ZIP Code"
             variant="outlined"
             margin="dense"
-            onChange={handleChange}
-            value={form.zip}
+            {...register("zip", {
+              required: "This field is required",
+              pattern: { value: /^\d\d-\d\d\d$/, message: "Invalid ZIP code" },
+            })}
+            error={!!errors.zip}
+            helperText={errors.zip ? errors.zip.message : ""}
           />
+
           <TextInput
-            required
-            id="email"
             label="E-mail"
             variant="outlined"
             margin="dense"
-            onChange={handleChange}
-            value={form.email}
+            {...register("email", {
+              required: "This field is required",
+              pattern: {
+                value: /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/,
+                message: "Invalid e-mail",
+              },
+            })}
+            error={!!errors.email}
+            helperText={errors.email ? errors.email.message : ""}
           />
           <TextInput
-            id="phoneNumber"
             label="Phone Number"
             variant="outlined"
             margin="dense"
-            onChange={handleChange}
-            value={form.number}
+            {...register("phoneNumber", {
+              pattern: {
+                value: /^\d{9}$/,
+                message: "Invalid phone number",
+              },
+            })}
+            error={!!errors.phoneNumber}
+            helperText={errors.phoneNumber ? errors.phoneNumber.message : ""}
           />
           <TextInputNotes
-            id="notes"
             label="Additional Information"
             variant="outlined"
             margin="dense"
-            onChange={handleChange}
-            value={form.notes}
+            {...register("notes")}
           />
         </FormDiv>
         <PaymentTitle>Choose payment method</PaymentTitle>
+
         <PaymentDiv>
-          <ToggleGroupStyled value={form.payment} id="payment" exclusive onChange={handlePayment}>
+          <ToggleGroupStyled value={payment} id="payment" exclusive onChange={handlePayment}>
             {PAYMENT_METHODS.map(item => (
               <ToggleButton value={item.name} key={item.name} sx={{ flexBasis: "30%" }}>
                 <Image src={`/assets/payments/${item.img}`} alt={item.name} />
@@ -99,7 +115,6 @@ const SummaryForm = ({ handleChange, handleSubmit, form, handlePayment }) => {
             ))}
           </ToggleGroupStyled>
         </PaymentDiv>
-
         <ButtonDiv>
           <OrderButton>Order</OrderButton>
         </ButtonDiv>

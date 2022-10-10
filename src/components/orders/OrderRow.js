@@ -36,30 +36,43 @@ const OrderRow = ({ order }) => {
         <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
           <Collapse in={open} timeout="auto" unmountOnExit>
             <Box sx={{ margin: 1 }}>
-              <DetailsTitle>Address: </DetailsTitle>
-              <DetailsText>
-                {order.building} {order.street} Street
-              </DetailsText>
-              <DetailsText>
-                {order.zip} {order.city}
-              </DetailsText>
-              <TextDiv>
-                <DetailsTitle>E-mail: </DetailsTitle>
-                <DetailsText>{order.email}</DetailsText>
-              </TextDiv>
-              <TextDiv>
-                <DetailsTitle>Phone number: </DetailsTitle>
-                <DetailsText>{order.phoneNumber}</DetailsText>
-              </TextDiv>
-              <TextDiv>
-                <DetailsTitle>Payment method: </DetailsTitle>
-                <DetailsText>{order.payment}</DetailsText>
-              </TextDiv>
+              <RowDiv>
+                <RowHalfDiv>
+                  <DetailsTitle>Address: </DetailsTitle>
+                  <DetailsText>
+                    {order.building} {order.street} Street
+                  </DetailsText>
+                  <DetailsText>
+                    {order.zip} {order.city}
+                  </DetailsText>
+                  <TextDiv>
+                    <DetailsTitle>E-mail: </DetailsTitle>
+                    <DetailsText>{order.email}</DetailsText>
+                  </TextDiv>
+                  <TextDiv>
+                    <DetailsTitle>Phone number: </DetailsTitle>
+                    <DetailsText>{order.phoneNumber}</DetailsText>
+                  </TextDiv>
+                  <TextDiv>
+                    <DetailsTitle>Payment method: </DetailsTitle>
+                    <DetailsText>{order.payment}</DetailsText>
+                  </TextDiv>
+                </RowHalfDiv>
+
+                <RowHalfDiv>
+                  <DetailsTitle>Items:</DetailsTitle>
+                  {order.items.map(item => (
+                    <DetailsText key={item.name}>
+                      {item.name} x{item.quantity}
+                    </DetailsText>
+                  ))}
+                </RowHalfDiv>
+              </RowDiv>
+
               <TextDiv>
                 <DetailsTitle>Notes: </DetailsTitle>
                 <DetailsText>{order.notes}</DetailsText>
               </TextDiv>
-              {/* items */}
             </Box>
           </Collapse>
         </TableCell>
@@ -69,6 +82,15 @@ const OrderRow = ({ order }) => {
 };
 
 export default OrderRow;
+
+const RowDiv = styled.div`
+  display: flex;
+  flex-flow: row nowrap;
+`;
+
+const RowHalfDiv = styled.div`
+  flex-basis: 50%;
+`;
 
 const DetailsTitle = styled.h4`
   color: var(--dark-icon);

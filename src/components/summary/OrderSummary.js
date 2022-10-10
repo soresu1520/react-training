@@ -6,13 +6,21 @@ import styled from "styled-components";
 import SummaryItem from "./SummaryItem";
 import SummaryPrice from "./SummaryPrice";
 import SummaryForm from "./SummaryForm";
-import { defaultFormValues } from "./defaultValues";
+import { v4 as uuid } from "uuid";
+import { postOrder } from "../../server/API";
+import SnackbarMessage from "../other/SnackbarMessage";
+import { useContext } from "react";
+import SnackbarContext from "../../context/SnackbarContext";
+import { useNavigate } from "react-router-dom";
 
 const OrderSummary = () => {
   const cart = JSON.parse(localStorage.getItem("cart")) || [];
+  const deliveryPrice = 2;
+  const navigate = useNavigate();
 
   const [price, setPrice] = useState(0);
-  const [form, setForm] = useState(defaultFormValues);
+  const [payment, setPayment] = useState("PayPal");
+  const [snackInfo, setSnackInfo] = useContext(SnackbarContext);
 
   useEffect(() => {
     calculatePrice();
@@ -25,20 +33,31 @@ const OrderSummary = () => {
     setPrice(cartPrice.toFixed(2));
   };
 
-  const handleChange = e => {
-    const { id, value } = e.target;
-    setForm({ ...form, [id]: value });
-  };
-
   const handlePayment = (e, newPayment) => {
-    setForm({ ...form, payment: newPayment });
+    setPayment(newPayment);
   };
 
-  const handleSubmit = e => {
-    e.preventDefault();
-    //add id and price, change cart items
-    setForm({ ...form, data: new Date(), items: [...cart] });
-    console.log("submitted");
+  const onSubmit = async data => {
+    const newDate = new Date().toLocaleDateString("en-GB");
+    data = {
+      ...data,
+      id: uuid().slice(0, 8).toUpperCase(),
+      payment: payment,
+      price: +price + +deliveryPrice,
+      date: newDate,
+      items: cart,
+    };
+
+    try {
+      const response = await postOrder(data);
+      console.log(response);
+      setSnackInfo({ open: true, message: "Order successful", type: "success" });
+      localStorage.removeItem("cart");
+      navigate("/");
+    } catch (e) {
+      console.log(e);
+      setSnackInfo({ open: true, message: "Order failed", type: "error" });
+    }
   };
 
   return (
@@ -75,10 +94,9 @@ const OrderSummary = () => {
       <SummaryPageDiv>
         <SummaryContentDiv>
           <SummaryForm
-            handleChange={handleChange}
-            handleSubmit={handleSubmit}
-            form={form}
+            payment={payment}
             handlePayment={handlePayment}
+            onSubmit={onSubmit}
           ></SummaryForm>
         </SummaryContentDiv>
 
@@ -90,10 +108,11 @@ const OrderSummary = () => {
           </ItemsDiv>
 
           <SummaryPriceDiv>
-            <SummaryPrice price={price}></SummaryPrice>
+            <SummaryPrice price={price} deliveryPrice={deliveryPrice}></SummaryPrice>
           </SummaryPriceDiv>
         </SummaryContentDiv>
       </SummaryPageDiv>
+      {snackInfo.open ? <SnackbarMessage></SnackbarMessage> : null}
     </PageDiv>
   );
 };

@@ -12,3 +12,7 @@ export function getCategories() {
 export function getOrders() {
   return axios.get(`${configServer.SERVER_URL}orders`);
 }
+
+export function postOrder(order) {
+  return axios.post(`${configServer.SERVER_URL}orders`, order);
+}

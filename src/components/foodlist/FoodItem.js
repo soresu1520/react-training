@@ -3,9 +3,20 @@ import SnackbarMessage from "../other/SnackbarMessage";
 import { useContext } from "react";
 import SnackbarContext from "../../context/SnackbarContext";
 import { Button } from "../../styles/StyledComponents";
+import { useState } from "react";
+import FoodModal from "./FoodModal";
 
 const FoodItem = ({ foodItem }) => {
   const [snackInfo, setSnackInfo] = useContext(SnackbarContext);
+  const [open, setOpen] = useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   const addItemToCart = () => {
     try {
@@ -18,7 +29,6 @@ const FoodItem = ({ foodItem }) => {
           productId: foodItem.id,
           name: foodItem.name,
           price: foodItem.price,
-          categoryId: foodItem.categoryId,
           image: foodItem.image,
           quantity: 1,
         });
@@ -35,14 +45,15 @@ const FoodItem = ({ foodItem }) => {
   return (
     <DivCard>
       <DivTitle>
-        <CardTitle>{foodItem.name}</CardTitle>
+        <CardTitle onClick={handleClickOpen}>{foodItem.name}</CardTitle>
         <CardSubtitle>$ {foodItem.price.toFixed(2)}</CardSubtitle>
       </DivTitle>
-      <Image src={`/assets/food/${foodItem.image}`} alt={foodItem.name} />
+      <Image src={`/assets/food/${foodItem.image}`} alt={foodItem.name} onClick={handleClickOpen} />
       <DivButton>
         <Button onClick={addItemToCart}>Add to cart</Button>
       </DivButton>
-      {snackInfo.open === true ? <SnackbarMessage></SnackbarMessage> : <div></div>}
+      {snackInfo.open ? <SnackbarMessage></SnackbarMessage> : null}
+      <FoodModal open={open} onClose={handleClose} food={foodItem} />
     </DivCard>
   );
 };
@@ -71,6 +82,7 @@ const CardTitle = styled.h3`
   color: var(--color-dark-icon);
   margin-bottom: 0.1em;
   margin-top: 0.5em;
+  cursor: pointer;
 `;
 
 const CardSubtitle = styled.h4`
@@ -84,6 +96,7 @@ const CardSubtitle = styled.h4`
 const Image = styled.img`
   width: 100%;
   height: auto;
+  cursor: pointer;
 `;
 
 const DivButton = styled.div`

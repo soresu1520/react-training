@@ -1,8 +1,6 @@
 import styled from "styled-components";
 
-const SummaryPrice = ({ price }) => {
-  const DELIVERY_PRICE = 2;
-
+const SummaryPrice = ({ price, deliveryPrice }) => {
   return (
     <PriceDiv>
       <SubPriceDiv>
@@ -11,12 +9,12 @@ const SummaryPrice = ({ price }) => {
       </SubPriceDiv>
       <SubPriceDiv>
         <PriceText>Delivery</PriceText>
-        <PriceTextRight>{DELIVERY_PRICE.toFixed(2)} $</PriceTextRight>
+        <PriceTextRight>{deliveryPrice.toFixed(2)} $</PriceTextRight>
       </SubPriceDiv>
       <Line></Line>
       <SubPriceDiv>
         <TotalText>Total</TotalText>
-        <TotalTextRight>{(+price + DELIVERY_PRICE).toFixed(2)} $</TotalTextRight>
+        <TotalTextRight>{(+price + +deliveryPrice).toFixed(2)} $</TotalTextRight>
       </SubPriceDiv>
     </PriceDiv>
   );

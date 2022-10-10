@@ -51,5 +51,8 @@ export const Button = styled.button`
 export const SecondaryButton = styled(Button)`
   background: var(--color-brand-20);
   color: var(--color-brand-500);
-  border: none;
+  :focus {
+    background: var(--color-brand-500);
+    color: var(--color-brand-20);
+  }
 `;

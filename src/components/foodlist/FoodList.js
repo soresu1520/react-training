@@ -11,14 +11,17 @@ import {
   PageSubtitle,
   Message,
   SecondaryButton,
+  Button,
 } from "../../styles/StyledComponents";
 
 const FoodList = () => {
+  const ITEMS_ON_PAGE = 5;
   const [unfilteredFood, setUnfilteredFood] = useState([]);
   const [food, setFood] = useState([]);
   const [categories, setCategories] = useState([]);
   const [message, setMessage] = useState("Loading...");
   const [sortCriteria, setSortCriteria] = useState(localStorage.getItem("sort") || "alphabetAsc");
+  const [loadItems, setLoadItems] = useState(ITEMS_ON_PAGE);
 
   useEffect(() => {
     fetchFood();
@@ -86,15 +89,13 @@ const FoodList = () => {
       </TitleDiv>
 
       <CategoryDiv>
-        {!message ? (
-          categories.map((category, i) => (
-            <SecondaryButton onClick={() => filterFood(category)} key={i}>
-              {category.categoryName}
-            </SecondaryButton>
-          ))
-        ) : (
-          <div></div>
-        )}
+        {!message
+          ? categories.map((category, i) => (
+              <SecondaryButton onClick={() => filterFood(category)} key={i}>
+                {category.categoryName}
+              </SecondaryButton>
+            ))
+          : null}
       </CategoryDiv>
 
       <DivSelect>
@@ -111,9 +112,19 @@ const FoodList = () => {
         {message ? (
           <Message>{message}</Message>
         ) : (
-          food.map(foodItem => <FoodItem foodItem={foodItem} key={foodItem.id}></FoodItem>)
+          food
+            .slice(0, loadItems)
+            .map(foodItem => <FoodItem foodItem={foodItem} key={foodItem.id}></FoodItem>)
         )}
       </DivList>
+
+      <DivButton>
+        {loadItems < food.length ? (
+          <Button onClick={() => setLoadItems(prevState => prevState + ITEMS_ON_PAGE)}>
+            Load more
+          </Button>
+        ) : null}
+      </DivButton>
     </PageDiv>
   );
 };
@@ -159,4 +170,9 @@ const DivList = styled.div`
   align-self: flex-start;
   gap: 2% 2%;
   padding-right: 0;
+`;
+
+const DivButton = styled.div`
+  display: flex;
+  justify-content: center;
 `;

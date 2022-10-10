@@ -9,15 +9,25 @@ const OrdersList = () => {
 
   useEffect(() => {
     fetchOrders();
-  }, []);
+  }, []); //eslint-disable-line react-hooks/exhaustive-deps
 
   const fetchOrders = async () => {
     try {
       const response = await getOrders();
-      setOrders(response.data);
+      setOrders(sortDates(response.data));
     } catch (error) {
       console.error(error);
     }
+  };
+
+  const sortDates = data => {
+    const sorted = data.sort((a, b) => {
+      const newA = a.date.split("/").reverse().join("-");
+      const newB = b.date.split("/").reverse().join("-");
+      return +new Date(newB) - +new Date(newA);
+    });
+    console.log(sorted);
+    return sorted;
   };
 
   return (

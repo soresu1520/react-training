@@ -27,42 +27,66 @@
       "name": "Salad",
       "price": 5,
       "categoryId": "c1",
-      "image": "salad.png"
+      "image": "salad.png",
+      "allergens": [
+        "almonds"
+      ]
     },
     {
       "id": 2,
       "name": "Pancakes",
       "price": 5,
       "categoryId": "c2",
-      "image": "pancakes.png"
+      "image": "pancakes.png",
+      "allergens": [
+        "milk",
+        "eggs",
+        "wheat"
+      ]
     },
     {
       "id": 3,
       "name": "Tacos",
       "price": 6,
       "categoryId": "c3",
-      "image": "tacos.png"
+      "image": "tacos.png",
+      "allergens": [
+        "wheat"
+      ]
     },
     {
       "id": 4,
       "name": "Strawberry Cake",
       "price": 4.5,
       "categoryId": "c2",
-      "image": "scake.png"
+      "image": "scake.png",
+      "allergens": [
+        "milk",
+        "eggs"
+      ]
     },
     {
       "id": 5,
       "name": "Ramen",
       "price": 12,
       "categoryId": "c4",
-      "image": "ramen.png"
+      "image": "ramen.png",
+      "allergens": [
+        "eggs",
+        "soy",
+        "wheat"
+      ]
     },
     {
       "id": 6,
       "name": "Farfalle",
       "price": 7,
       "categoryId": "c5",
-      "image": "farfalle.png"
+      "image": "farfalle.png",
+      "allergens": [
+        "eggs",
+        "wheat"
+      ]
     }
   ],
   "orders": [
@@ -78,15 +102,19 @@
       "phoneNumber": "111111222",
       "notes": "additional info",
       "payment": "PayPal",
-      "price": 24.0,
-      "date": "09-20-2022",
+      "price": 24,
+      "date": "19/09/2022",
       "items": [
         {
           "id": 4,
           "name": "Strawberry Cake",
           "quantity": 4
         },
-        { "id": 4, "name": "Tacos", "quantity": 1 }
+        {
+          "id": 4,
+          "name": "Tacos",
+          "quantity": 1
+        }
       ]
     },
     {
@@ -101,130 +129,197 @@
       "phoneNumber": "771111222",
       "notes": "",
       "payment": "PayPal",
-      "price": 24.0,
-      "date": "09-21-2022",
+      "price": 24,
+      "date": "20/9/2022",
       "items": [
         {
           "id": 4,
           "name": "Strawberry Cake",
           "quantity": 4
         },
-        { "id": 4, "name": "Tacos", "quantity": 1 }
+        {
+          "id": 4,
+          "name": "Tacos",
+          "quantity": 1
+        }
       ]
     },
     {
-      "id": "1222",
-      "firstName": "John",
-      "lastName": "Doe",
-      "street": "Kwiatowa",
-      "building": "8",
-      "city": "Wrocław",
-      "zip": "54-202",
-      "email": "johndoe@example.com",
-      "phoneNumber": "771111222",
+      "firstName": "gtgg",
+      "lastName": "gtgt",
+      "street": "gt",
+      "building": "gt",
+      "city": "gt",
+      "zip": "63-645",
+      "email": "mam@mm.com",
+      "phoneNumber": "",
       "notes": "",
+      "id": "16B02D73",
       "payment": "PayPal",
-      "price": 24.0,
-      "date": "09-21-2022",
+      "price": 79,
+      "date": "10/10/2022",
       "items": [
         {
-          "id": 4,
+          "productId": 4,
           "name": "Strawberry Cake",
+          "price": 4.5,
+          "categoryId": "c2",
+          "image": "scake.png",
           "quantity": 4
         },
-        { "id": 4, "name": "Tacos", "quantity": 1 }
+        {
+          "productId": 3,
+          "name": "Tacos",
+          "price": 6,
+          "categoryId": "c3",
+          "image": "tacos.png",
+          "quantity": 3
+        },
+        {
+          "productId": 5,
+          "name": "Ramen",
+          "price": 12,
+          "categoryId": "c4",
+          "image": "ramen.png",
+          "quantity": 3
+        },
+        {
+          "productId": 2,
+          "name": "Pancakes",
+          "price": 5,
+          "categoryId": "c2",
+          "image": "pancakes.png",
+          "quantity": 1
+        }
       ]
     },
     {
-      "id": "1224",
-      "firstName": "John",
-      "lastName": "Doe",
-      "street": "Kwiatowa",
-      "building": "8",
-      "city": "Wrocław",
-      "zip": "54-202",
-      "email": "johndoe@example.com",
-      "phoneNumber": "771111222",
+      "firstName": "rr",
+      "lastName": "rr",
+      "street": "rr",
+      "building": "rr",
+      "city": "rr",
+      "zip": "63-645",
+      "email": "mam@mm.com",
+      "phoneNumber": "",
       "notes": "",
+      "id": "3BFB3DA9",
       "payment": "PayPal",
-      "price": 24.0,
-      "date": "09-21-2022",
+      "price": 79,
+      "date": "10/10/2022",
       "items": [
         {
-          "id": 4,
+          "productId": 4,
           "name": "Strawberry Cake",
+          "price": 4.5,
+          "categoryId": "c2",
+          "image": "scake.png",
           "quantity": 4
         },
-        { "id": 4, "name": "Tacos", "quantity": 1 }
+        {
+          "productId": 3,
+          "name": "Tacos",
+          "price": 6,
+          "categoryId": "c3",
+          "image": "tacos.png",
+          "quantity": 3
+        },
+        {
+          "productId": 5,
+          "name": "Ramen",
+          "price": 12,
+          "categoryId": "c4",
+          "image": "ramen.png",
+          "quantity": 3
+        },
+        {
+          "productId": 2,
+          "name": "Pancakes",
+          "price": 5,
+          "categoryId": "c2",
+          "image": "pancakes.png",
+          "quantity": 1
+        }
       ]
     },
     {
-      "id": "1255",
-      "firstName": "John",
-      "lastName": "Doe",
-      "street": "Kwiatowa",
-      "building": "8",
-      "city": "Wrocław",
-      "zip": "54-202",
-      "email": "johndoe@example.com",
-      "phoneNumber": "771111222",
+      "firstName": "t5t",
+      "lastName": "t55",
+      "street": "t5",
+      "building": "t5",
+      "city": "t5",
+      "zip": "55-555",
+      "email": "mam@mm.com",
+      "phoneNumber": "",
       "notes": "",
-      "payment": "PayPal",
-      "price": 24.0,
-      "date": "09-21-2022",
+      "id": "B2C3585C",
+      "payment": "PayU",
+      "price": 79,
+      "date": "10/10/2022",
       "items": [
         {
-          "id": 4,
+          "productId": 4,
           "name": "Strawberry Cake",
+          "price": 4.5,
+          "categoryId": "c2",
+          "image": "scake.png",
           "quantity": 4
         },
-        { "id": 4, "name": "Tacos", "quantity": 1 }
+        {
+          "productId": 3,
+          "name": "Tacos",
+          "price": 6,
+          "categoryId": "c3",
+          "image": "tacos.png",
+          "quantity": 3
+        },
+        {
+          "productId": 5,
+          "name": "Ramen",
+          "price": 12,
+          "categoryId": "c4",
+          "image": "ramen.png",
+          "quantity": 3
+        },
+        {
+          "productId": 2,
+          "name": "Pancakes",
+          "price": 5,
+          "categoryId": "c2",
+          "image": "pancakes.png",
+          "quantity": 1
+        }
       ]
     },
     {
-      "id": "1266",
-      "firstName": "John",
-      "lastName": "Doe",
-      "street": "Kwiatowa",
-      "building": "8",
-      "city": "Wrocław",
-      "zip": "54-202",
-      "email": "johndoe@example.com",
-      "phoneNumber": "771111222",
+      "firstName": "tt",
+      "lastName": "t5",
+      "street": "t5",
+      "building": "t5",
+      "city": "t5",
+      "zip": "63-645",
+      "email": "mam@mm.com",
+      "phoneNumber": "",
       "notes": "",
-      "payment": "PayPal",
-      "price": 24.0,
-      "date": "09-21-2022",
+      "id": "06B45100",
+      "payment": "Blik",
+      "price": 28,
+      "date": "10/10/2022",
       "items": [
         {
-          "id": 4,
-          "name": "Strawberry Cake",
-          "quantity": 4
+          "productId": 1,
+          "name": "Salad",
+          "price": 5,
+          "image": "salad.png",
+          "quantity": 1
         },
-        { "id": 4, "name": "Tacos", "quantity": 1 }
-      ]
-    },
-    {
-      "id": "1271",
-      "firstName": "John",
-      "lastName": "Doe",
-      "street": "Kwiatowa",
-      "building": "8",
-      "city": "Wrocław",
-      "zip": "54-202",
-      "email": "johndoe@example.com",
-      "phoneNumber": "771111222",
-      "notes": "",
-      "payment": "PayPal",
-      "price": 24.0,
-      "date": "09-21-2022",
-      "items": [
         {
-          "id": 4,
-          "name": "Strawberry Cake",
-          "quantity": 4
-        },
-        { "id": 4, "name": "Tacos", "quantity": 1 }
+          "productId": 6,
+          "name": "Farfalle",
+          "price": 7,
+          "image": "farfalle.png",
+          "quantity": 3
+        }
       ]
     }
   ]
