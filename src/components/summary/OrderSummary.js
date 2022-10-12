@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { PageDiv, PageTitle, PageSubtitle, TitleDiv } from "../../styles/StyledComponents";
+import { PageDiv, PageTitle, PageSubtitle, TitleDiv, Message } from "../../styles/StyledComponents";
 import ModeEditOutlineOutlinedIcon from "@mui/icons-material/ModeEditOutlineOutlined";
 import GradingOutlinedIcon from "@mui/icons-material/GradingOutlined";
 import styled from "styled-components";
@@ -12,6 +12,7 @@ import SnackbarMessage from "../other/SnackbarMessage";
 import { useContext } from "react";
 import SnackbarContext from "../../context/SnackbarContext";
 import { useNavigate } from "react-router-dom";
+import { calculatePrice } from "../../utils/calculate";
 
 const OrderSummary = () => {
   const cart = JSON.parse(localStorage.getItem("cart")) || [];
@@ -20,18 +21,13 @@ const OrderSummary = () => {
 
   const [price, setPrice] = useState(0);
   const [payment, setPayment] = useState("PayPal");
+  const [message, setMessage] = useState(0);
   const [snackInfo, setSnackInfo] = useContext(SnackbarContext);
 
   useEffect(() => {
-    calculatePrice();
+    cart.length === 0 ? setMessage("Cart is empty") : setMessage("");
+    setPrice(calculatePrice(cart).toFixed(2));
   }, []); //eslint-disable-line react-hooks/exhaustive-deps
-
-  const calculatePrice = () => {
-    const cartPrice = cart.reduce((prevValue, cartItem) => {
-      return prevValue + cartItem.quantity * cartItem.price;
-    }, 0);
-    setPrice(cartPrice.toFixed(2));
-  };
 
   const handlePayment = (e, newPayment) => {
     setPayment(newPayment);
@@ -62,57 +58,64 @@ const OrderSummary = () => {
 
   return (
     <PageDiv>
-      <SummaryPageDiv>
-        <SummaryTitleDiv>
-          <FormTitleDiv>
-            <PageTitle>Form</PageTitle>
-            <ModeEditOutlineOutlinedIcon
-              sx={{
-                color: "var(--color-dark-icon)",
-                fontSize: 40,
-                marginLeft: "0.3em",
-              }}
-            ></ModeEditOutlineOutlinedIcon>
-          </FormTitleDiv>
-          <PageSubtitle>Fill out the form so that we can deliver your food to you</PageSubtitle>
-        </SummaryTitleDiv>
+      {!message && (
+        <div>
+          <SummaryPageDiv>
+            <SummaryTitleDiv>
+              <FormTitleDiv>
+                <PageTitle>Form</PageTitle>
+                <ModeEditOutlineOutlinedIcon
+                  sx={{
+                    color: "var(--color-dark-icon)",
+                    fontSize: 40,
+                    marginLeft: "0.3em",
+                  }}
+                ></ModeEditOutlineOutlinedIcon>
+              </FormTitleDiv>
+              <PageSubtitle>Fill out the form so that we can deliver your food to you</PageSubtitle>
+            </SummaryTitleDiv>
 
-        <SummaryTitleDiv>
-          <TitleDiv>
-            <PageTitle>Summary</PageTitle>
-            <GradingOutlinedIcon
-              sx={{
-                color: "var(--color-dark-icon)",
-                fontSize: 40,
-                marginLeft: "0.3em",
-              }}
-            ></GradingOutlinedIcon>
-          </TitleDiv>
-        </SummaryTitleDiv>
-      </SummaryPageDiv>
+            <SummaryTitleDiv>
+              <TitleDiv>
+                <PageTitle>Summary</PageTitle>
+                <GradingOutlinedIcon
+                  sx={{
+                    color: "var(--color-dark-icon)",
+                    fontSize: 40,
+                    marginLeft: "0.3em",
+                  }}
+                ></GradingOutlinedIcon>
+              </TitleDiv>
+            </SummaryTitleDiv>
+          </SummaryPageDiv>
 
-      <SummaryPageDiv>
-        <SummaryContentDiv>
-          <SummaryForm
-            payment={payment}
-            handlePayment={handlePayment}
-            onSubmit={onSubmit}
-          ></SummaryForm>
-        </SummaryContentDiv>
+          <SummaryPageDiv>
+            <SummaryContentDiv>
+              <SummaryForm
+                payment={payment}
+                handlePayment={handlePayment}
+                onSubmit={onSubmit}
+              ></SummaryForm>
+            </SummaryContentDiv>
 
-        <SummaryContentDiv>
-          <ItemsDiv>
-            {cart.map(cartItem => (
-              <SummaryItem cartItem={cartItem} key={cartItem.productId}></SummaryItem>
-            ))}
-          </ItemsDiv>
+            <SummaryContentDiv>
+              <ItemsDiv>
+                {cart.map(cartItem => (
+                  <SummaryItem cartItem={cartItem} key={cartItem.productId}></SummaryItem>
+                ))}
+              </ItemsDiv>
 
-          <SummaryPriceDiv>
-            <SummaryPrice price={price} deliveryPrice={deliveryPrice}></SummaryPrice>
-          </SummaryPriceDiv>
-        </SummaryContentDiv>
-      </SummaryPageDiv>
+              <SummaryPriceDiv>
+                <SummaryPrice price={price} deliveryPrice={deliveryPrice}></SummaryPrice>
+              </SummaryPriceDiv>
+            </SummaryContentDiv>
+          </SummaryPageDiv>
+        </div>
+      )}
+
       {snackInfo.open ? <SnackbarMessage></SnackbarMessage> : null}
+
+      {!cart.length && <Message>{message}</Message>}
     </PageDiv>
   );
 };

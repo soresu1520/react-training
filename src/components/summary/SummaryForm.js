@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import TextField from "@mui/material/TextField";
 import { Button } from "../../styles/StyledComponents";
-import { PAYMENT_METHODS } from "./defaultValues";
+import { PAYMENT_METHODS } from "../../constants/PaymentMethods";
 import { ToggleButtonGroup, ToggleButton } from "@mui/material";
 import { useForm } from "react-hook-form";
 

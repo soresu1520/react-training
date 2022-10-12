@@ -3,9 +3,12 @@ import ListAltIcon from "@mui/icons-material/ListAlt";
 import OrdersTable from "./OdersTable";
 import { useState, useEffect } from "react";
 import { getOrders } from "../../server/API";
+import { Message } from "../../styles/StyledComponents";
+import { sortDates } from "../../utils/sort";
 
 const OrdersList = () => {
   const [orders, setOrders] = useState([]);
+  const [message, setMessage] = useState("Loading...");
 
   useEffect(() => {
     fetchOrders();
@@ -15,19 +18,11 @@ const OrdersList = () => {
     try {
       const response = await getOrders();
       setOrders(sortDates(response.data));
+      setMessage("");
     } catch (error) {
       console.error(error);
+      setMessage("Error. Try again");
     }
-  };
-
-  const sortDates = data => {
-    const sorted = data.sort((a, b) => {
-      const newA = a.date.split("/").reverse().join("-");
-      const newB = b.date.split("/").reverse().join("-");
-      return +new Date(newB) - +new Date(newA);
-    });
-    console.log(sorted);
-    return sorted;
   };
 
   return (
@@ -42,7 +37,13 @@ const OrdersList = () => {
           }}
         ></ListAltIcon>
       </TitleDiv>
-      <OrdersTable orders={orders}></OrdersTable>
+      {!message &&
+        (orders.length ? (
+          <OrdersTable orders={orders}></OrdersTable>
+        ) : (
+          <Message>There are no orders</Message>
+        ))}
+      {message && <Message>{message}</Message>}
     </PageDiv>
   );
 };

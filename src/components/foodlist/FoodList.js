@@ -3,7 +3,7 @@ import styled from "styled-components";
 import LocalDiningIcon from "@mui/icons-material/LocalDining";
 import { getAllFood, getCategories } from "../../server/API";
 import FoodItem from "./FoodItem";
-import { sortData } from "./sortData";
+import { sortData } from "../../utils/sort/index.js";
 import {
   PageDiv,
   TitleDiv,
@@ -89,13 +89,12 @@ const FoodList = () => {
       </TitleDiv>
 
       <CategoryDiv>
-        {!message
-          ? categories.map((category, i) => (
-              <SecondaryButton onClick={() => filterFood(category)} key={i}>
-                {category.categoryName}
-              </SecondaryButton>
-            ))
-          : null}
+        {!message &&
+          categories.map((category, i) => (
+            <SecondaryButton onClick={() => filterFood(category)} key={i}>
+              {category.categoryName}
+            </SecondaryButton>
+          ))}
       </CategoryDiv>
 
       <DivSelect>
@@ -109,13 +108,12 @@ const FoodList = () => {
       </DivSelect>
 
       <DivList>
-        {message ? (
-          <Message>{message}</Message>
-        ) : (
+        {message && <Message>{message}</Message>}
+
+        {!message &&
           food
             .slice(0, loadItems)
-            .map(foodItem => <FoodItem foodItem={foodItem} key={foodItem.id}></FoodItem>)
-        )}
+            .map(foodItem => <FoodItem foodItem={foodItem} key={foodItem.id}></FoodItem>)}
       </DivList>
 
       <DivButton>

@@ -2,10 +2,12 @@ import styled from "styled-components";
 import ListAltIcon from "@mui/icons-material/ListAlt";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Badge } from "@mui/material";
 
 const Navbar = () => {
+  const location = useLocation();
+  const navigate = useNavigate();
   const [quantity, setQuantity] = useState(0);
 
   useEffect(() => {
@@ -21,13 +23,19 @@ const Navbar = () => {
     setQuantity(cartQuantity);
   };
 
+  const goToHomePage = () => {
+    if (location.pathname === "/") {
+      window.location.reload(true);
+    } else {
+      navigate("/");
+    }
+  };
+
   return (
     <DivHeader>
       <Header>
         <DivImage>
-          <Link to="/">
-            <img src="/assets/icon.png" alt="logo" />
-          </Link>
+          <Image src="/assets/icon.png" alt="logo" onClick={goToHomePage} />
         </DivImage>
         <Title>Click and Eat</Title>
         <DivIcon>
@@ -88,6 +96,10 @@ const DivIcon = styled.div`
   align-items: center;
   flex-flow: row wrap;
   flex: 1;
+`;
+
+const Image = styled.img`
+  cursor: pointer;
 `;
 
 export const navbarIcon = {

@@ -6,6 +6,7 @@ import CartItem from "./CartItem";
 import { Link } from "react-router-dom";
 import SnackbarContext from "../../context/SnackbarContext";
 import SnackbarMessage from "../other/SnackbarMessage";
+import { calculatePrice } from "../../utils/calculate";
 
 const ShoppingCart = () => {
   const [cart, setCart] = useState(JSON.parse(localStorage.getItem("cart")) || []);
@@ -15,16 +16,9 @@ const ShoppingCart = () => {
 
   useEffect(() => {
     cart.length === 0 ? setMessege("Cart is empty") : setMessege("");
-    calculatePrice();
+    setPrice(calculatePrice(cart).toFixed(2));
     localStorage.setItem("cart", JSON.stringify(cart));
   }, [cart]); //eslint-disable-line react-hooks/exhaustive-deps
-
-  const calculatePrice = () => {
-    const cartPrice = cart.reduce((prevValue, cartItem) => {
-      return prevValue + cartItem.quantity * cartItem.price;
-    }, 0);
-    setPrice(cartPrice.toFixed(2));
-  };
 
   const changeQuantity = (productId, change) => {
     let foundIndex = cart.findIndex(element => element.productId === productId);
@@ -59,7 +53,7 @@ const ShoppingCart = () => {
         ></ShoppingCartOutlinedIcon>
       </TitleDiv>
 
-      {cart.length > 0 ? (
+      {cart.length > 0 && (
         <CartDiv>
           <CartItemsDiv>
             {cart.map(cartItem => (
@@ -82,9 +76,10 @@ const ShoppingCart = () => {
             </Link>
           </CartPriceDiv>
         </CartDiv>
-      ) : (
-        <Message>{messege}</Message>
       )}
+
+      {!cart.length && <Message>{messege}</Message>}
+
       {snackInfo.open === true ? <SnackbarMessage></SnackbarMessage> : <div></div>}
     </PageDiv>
   );

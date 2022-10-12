@@ -1,0 +1,63 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`footer renders correctly 1`] = `
+<div
+  className="sc-bczRLJ eQrVgT"
+>
+  <div
+    className="sc-gsnTZi MdYWD"
+  >
+    <h5
+      className="sc-eCYdqJ cWVpU"
+    >
+      Terms of Service
+    </h5>
+    <h5
+      className="sc-eCYdqJ cWVpU"
+    >
+      Security
+    </h5>
+    <h5
+      className="sc-eCYdqJ cWVpU"
+    >
+      Privacy
+    </h5>
+    <h5
+      className="sc-eCYdqJ cWVpU"
+    >
+      Contact
+    </h5>
+    <h5
+      className="sc-eCYdqJ cWVpU"
+    >
+      About us
+    </h5>
+  </div>
+  <div
+    className="sc-gsnTZi MdYWD"
+  >
+    <img
+      alt="twitter"
+      className="sc-dkzDqf kbKXbi"
+      src="/assets/socialmedia/twitter-fill.png"
+    />
+    <img
+      alt="instagram"
+      className="sc-dkzDqf kbKXbi"
+      src="/assets/socialmedia/instagram-line.png"
+    />
+    <img
+      alt="facebook"
+      className="sc-dkzDqf kbKXbi"
+      src="/assets/socialmedia/facebook-fill.png"
+    />
+  </div>
+  <h5
+    className="sc-hKMtZM iQfqIu"
+  >
+    @ 
+    2022
+     Click and Eat
+  </h5>
+</div>
+`;

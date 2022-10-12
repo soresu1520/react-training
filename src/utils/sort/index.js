@@ -12,3 +12,12 @@ export const sortData = (data, criteria) => {
       return [...data.sort((a, b) => b.price - a.price)];
   }
 };
+
+export const sortDates = data => {
+  const sorted = data.sort((a, b) => {
+    const newA = a.date.split("/").reverse().join("-");
+    const newB = b.date.split("/").reverse().join("-");
+    return +new Date(newB) - +new Date(newA);
+  });
+  return sorted;
+};
