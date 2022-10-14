@@ -3,9 +3,6 @@ import axios from "axios";
 
 jest.mock("axios");
 
-//zmienić trzy metody API na jedno get?
-//czy testować tylko jedną metodę z get z trzech obecnych?
-
 const food = [
   {
     id: 1,
@@ -100,6 +97,8 @@ describe("get food", () => {
   it("gets food successfully from an API", async () => {
     axios.get.mockImplementationOnce(() => Promise.resolve(food));
     await expect(getAllFood()).resolves.toEqual(food);
+    expect(axios.get).toHaveBeenCalledTimes(1);
+    expect(axios.get).toHaveBeenCalledWith("http://localhost:3000/food");
   });
 
   it("gets food with an error from an API", async () => {
@@ -112,6 +111,8 @@ describe("get categories", () => {
   it("gets categories successfully from an API", async () => {
     axios.get.mockImplementationOnce(() => Promise.resolve(categories));
     await expect(getCategories()).resolves.toEqual(categories);
+    expect(axios.get).toHaveBeenCalledTimes(1);
+    expect(axios.get).toHaveBeenCalledWith("http://localhost:3000/category");
   });
 
   it("gets categories with an error from an API", async () => {
@@ -124,6 +125,8 @@ describe("get orders", () => {
   it("gets orders successfully from an API", async () => {
     axios.get.mockImplementationOnce(() => Promise.resolve(orders));
     await expect(getOrders()).resolves.toEqual(orders);
+    expect(axios.get).toHaveBeenCalledTimes(1);
+    expect(axios.get).toHaveBeenCalledWith("http://localhost:3000/orders");
   });
 
   it("gets orders with an error from an API", async () => {
@@ -141,5 +144,7 @@ describe("post an order", () => {
   it("posts an order with an error", async () => {
     axios.post.mockImplementationOnce(() => Promise.reject(new Error(errorMessage)));
     await expect(postOrder(order)).rejects.toThrow(errorMessage);
+    expect(axios.post).toHaveBeenCalledTimes(1);
+    expect(axios.post).toHaveBeenCalledWith("http://localhost:3000/orders", order);
   });
 });

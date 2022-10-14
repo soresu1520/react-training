@@ -9,13 +9,23 @@ const CartItem = ({ cartItem, changeQuantity, deleteItem }) => {
       <CartTitleDiv>
         <CartItemTitle>{cartItem.name}</CartItemTitle>
         <CartItemSubtitle>Price: {cartItem.price.toFixed(2)} $</CartItemSubtitle>
-        <CartItemSubtitle>Quantity: {cartItem.quantity}</CartItemSubtitle>
+        <CartItemSubtitle data-testid="quantity">Quantity: {cartItem.quantity}</CartItemSubtitle>
         <CartItemPrice>Total: {(cartItem.quantity * cartItem.price).toFixed(2)} $</CartItemPrice>
       </CartTitleDiv>
       <QuantityDiv>
-        <QuantityButton onClick={() => changeQuantity(cartItem.productId, "SUB")}>–</QuantityButton>
+        <QuantityButton
+          onClick={() => changeQuantity(cartItem.productId, "SUB")}
+          data-testid="subQuantity"
+        >
+          –
+        </QuantityButton>
         <QuantityText>{cartItem.quantity}</QuantityText>
-        <QuantityButton onClick={() => changeQuantity(cartItem.productId, "ADD")}>+</QuantityButton>
+        <QuantityButton
+          onClick={() => changeQuantity(cartItem.productId, "ADD")}
+          data-testid="addQuantity"
+        >
+          +
+        </QuantityButton>
       </QuantityDiv>
       <DeleteOutlineOutlinedIcon
         onClick={() => deleteItem(cartItem.productId)}
@@ -25,6 +35,7 @@ const CartItem = ({ cartItem, changeQuantity, deleteItem }) => {
           flexBasis: "10%",
           cursor: "pointer",
         }}
+        data-testid="delete"
       ></DeleteOutlineOutlinedIcon>
     </CartItemDiv>
   );

@@ -1,0 +1,57 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`summary price renders correctly 1`] = `
+<div
+  className="sc-bczRLJ guFtRN"
+>
+  <div
+    className="sc-gsnTZi bonspk"
+  >
+    <h4
+      className="sc-hKMtZM kkqmlq"
+    >
+      Subtotal
+    </h4>
+    <h4
+      className="sc-hKMtZM sc-eCYdqJ kkqmlq ixugEV"
+    >
+      7
+       $
+    </h4>
+  </div>
+  <div
+    className="sc-gsnTZi bonspk"
+  >
+    <h4
+      className="sc-hKMtZM kkqmlq"
+    >
+      Delivery
+    </h4>
+    <h4
+      className="sc-hKMtZM sc-eCYdqJ kkqmlq ixugEV"
+    >
+      2.00
+       $
+    </h4>
+  </div>
+  <div
+    className="sc-dkzDqf gBJxRS"
+  />
+  <div
+    className="sc-gsnTZi bonspk"
+  >
+    <h2
+      className="sc-jSMfEi dbELcy"
+    >
+      Total
+    </h2>
+    <h2
+      className="sc-jSMfEi sc-gKXOVf dbELcy SvXlG"
+      data-testid="totalPrice"
+    >
+      9.00
+       $
+    </h2>
+  </div>
+</div>
+`;

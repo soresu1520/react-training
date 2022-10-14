@@ -14,7 +14,9 @@ const SummaryPrice = ({ price, deliveryPrice }) => {
       <Line></Line>
       <SubPriceDiv>
         <TotalText>Total</TotalText>
-        <TotalTextRight>{(+price + +deliveryPrice).toFixed(2)} $</TotalTextRight>
+        <TotalTextRight data-testid="totalPrice">
+          {(+price + deliveryPrice).toFixed(2)} $
+        </TotalTextRight>
       </SubPriceDiv>
     </PriceDiv>
   );

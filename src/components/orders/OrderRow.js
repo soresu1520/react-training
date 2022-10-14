@@ -16,7 +16,10 @@ const OrderRow = ({ order }) => {
     <Fragment>
       <TableRow
         sx={{ "& > *": { borderBottom: "unset" }, cursor: "pointer" }}
-        onClick={() => setOpen(!open)}
+        onClick={() => {
+          setOpen(!open);
+        }}
+        data-testid="row-click"
       >
         <TableCell>
           <IconButton aria-label="expand row" size="small">
@@ -38,7 +41,7 @@ const OrderRow = ({ order }) => {
             <Box sx={{ margin: 1 }}>
               <RowDiv>
                 <RowHalfDiv>
-                  <DetailsTitle>Address: </DetailsTitle>
+                  <DetailsTitle data-testid="address">Address:</DetailsTitle>
                   <DetailsText>
                     {order.building} {order.street} Street
                   </DetailsText>
