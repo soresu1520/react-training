@@ -1,4 +1,6 @@
-describe("ShoppingCart", () => {
-  it.todo("test delete, dać data-id do przycisku idealnie");
-  it.todo("refactor change quantity");
+import { render } from "@testing-library/react";
+import ShoppingCart from "../ShoppingCart";
+
+it("shopping cart", () => {
+  const shoppingCart = render(<ShoppingCart />);
 });

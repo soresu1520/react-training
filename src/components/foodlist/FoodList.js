@@ -99,7 +99,7 @@ const FoodList = () => {
 
       <DivSelect>
         <Label htmlFor="sort">Sort:</Label>
-        <Select name="sort" id="sort" onChange={sortFood} value={sortCriteria}>
+        <Select data-testid="sort" name="sort" id="sort" onChange={sortFood} value={sortCriteria}>
           <option value="alphabetAsc">Alphabetically (A-Z)</option>
           <option value="alphabetDesc">Alphabetically (Z-A)</option>
           <option value="priceAsc">Price (low to high)</option>
@@ -117,11 +117,11 @@ const FoodList = () => {
       </DivList>
 
       <DivButton>
-        {loadItems < food.length ? (
+        {loadItems < food.length && (
           <Button onClick={() => setLoadItems(prevState => prevState + ITEMS_ON_PAGE)}>
             Load more
           </Button>
-        ) : null}
+        )}
       </DivButton>
     </PageDiv>
   );

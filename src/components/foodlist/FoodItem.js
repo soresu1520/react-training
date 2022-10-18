@@ -19,27 +19,21 @@ const FoodItem = ({ foodItem }) => {
   };
 
   const addItemToCart = () => {
-    try {
-      const cart = JSON.parse(localStorage.getItem("cart")) || [];
-      const isInCart = cart.findIndex(e => e.productId === foodItem.id);
-      if (isInCart > -1) {
-        cart[isInCart].quantity = cart[isInCart].quantity + 1;
-      } else {
-        cart.push({
-          productId: foodItem.id,
-          name: foodItem.name,
-          price: foodItem.price,
-          image: foodItem.image,
-          quantity: 1,
-        });
-      }
-      setSnackInfo({ open: true, message: "Item added to cart!", type: "success" });
-      console.log(cart);
-      localStorage.setItem("cart", JSON.stringify(cart));
-    } catch (e) {
-      console.log(e);
-      setSnackInfo({ open: true, message: "Error. Try Again", type: "error" });
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+    const isInCart = cart.findIndex(e => e.productId === foodItem.id);
+    if (isInCart > -1) {
+      cart[isInCart].quantity = cart[isInCart].quantity + 1;
+    } else {
+      cart.push({
+        productId: foodItem.id,
+        name: foodItem.name,
+        price: foodItem.price,
+        image: foodItem.image,
+        quantity: 1,
+      });
     }
+    setSnackInfo({ open: true, message: "Item added to cart!", type: "success" });
+    localStorage.setItem("cart", JSON.stringify(cart));
   };
 
   return (
@@ -52,7 +46,7 @@ const FoodItem = ({ foodItem }) => {
       <DivButton>
         <Button onClick={addItemToCart}>Add to cart</Button>
       </DivButton>
-      {snackInfo.open ? <SnackbarMessage></SnackbarMessage> : null}
+      {snackInfo.open && <SnackbarMessage></SnackbarMessage>}
       <FoodModal open={open} onClose={handleClose} food={foodItem} />
     </DivCard>
   );

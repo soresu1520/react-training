@@ -22,7 +22,7 @@ const OrdersTable = ({ orders }) => {
   };
 
   return (
-    <TableContainer>
+    <TableContainer data-testid="orders-table">
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>
           <TableRow>

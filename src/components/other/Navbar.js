@@ -2,12 +2,11 @@ import styled from "styled-components";
 import ListAltIcon from "@mui/icons-material/ListAlt";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import { useState, useEffect } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Badge } from "@mui/material";
+import { countItems } from "../../utils/cart";
 
 const Navbar = () => {
-  const location = useLocation();
-  const navigate = useNavigate();
   const [quantity, setQuantity] = useState(0);
 
   useEffect(() => {
@@ -17,25 +16,22 @@ const Navbar = () => {
   const getQuantity = () => {
     const cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-    const cartQuantity = cart.reduce((prevValue, cartItem) => {
-      return prevValue + cartItem.quantity;
-    }, 0);
+    const cartQuantity = countItems(cart);
     setQuantity(cartQuantity);
-  };
-
-  const goToHomePage = () => {
-    if (location.pathname === "/") {
-      window.location.reload(true);
-    } else {
-      navigate("/");
-    }
   };
 
   return (
     <DivHeader>
       <Header>
         <DivImage>
-          <Image src="/assets/icon.png" alt="logo" onClick={goToHomePage} />
+          <Image
+            src="/assets/icon.png"
+            alt="logo"
+            onClick={() => {
+              window.location.href = window.location.origin + "/";
+            }}
+            data-testid="click-logo"
+          />
         </DivImage>
         <Title>Click and Eat</Title>
         <DivIcon>

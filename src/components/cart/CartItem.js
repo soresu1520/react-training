@@ -2,28 +2,25 @@ import styled from "styled-components";
 import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined";
 import { SecondaryButton } from "../../styles/StyledComponents";
 
-const CartItem = ({ cartItem, changeQuantity, deleteItem }) => {
+const CartItem = ({ cartItem, deleteItem, addQuantity, subtractQuantity }) => {
   return (
     <CartItemDiv>
       <Image src={`/assets/food/${cartItem.image}`} alt={cartItem.name} />
       <CartTitleDiv>
         <CartItemTitle>{cartItem.name}</CartItemTitle>
         <CartItemSubtitle>Price: {cartItem.price.toFixed(2)} $</CartItemSubtitle>
-        <CartItemSubtitle data-testid="quantity">Quantity: {cartItem.quantity}</CartItemSubtitle>
+        <CartItemSubtitle>Quantity: {cartItem.quantity}</CartItemSubtitle>
         <CartItemPrice>Total: {(cartItem.quantity * cartItem.price).toFixed(2)} $</CartItemPrice>
       </CartTitleDiv>
       <QuantityDiv>
         <QuantityButton
-          onClick={() => changeQuantity(cartItem.productId, "SUB")}
+          onClick={() => subtractQuantity(cartItem.productId)}
           data-testid="subQuantity"
         >
           –
         </QuantityButton>
         <QuantityText>{cartItem.quantity}</QuantityText>
-        <QuantityButton
-          onClick={() => changeQuantity(cartItem.productId, "ADD")}
-          data-testid="addQuantity"
-        >
+        <QuantityButton onClick={() => addQuantity(cartItem.productId)} data-testid="addQuantity">
           +
         </QuantityButton>
       </QuantityDiv>

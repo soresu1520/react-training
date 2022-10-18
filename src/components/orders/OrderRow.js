@@ -19,14 +19,14 @@ const OrderRow = ({ order }) => {
         onClick={() => {
           setOpen(!open);
         }}
-        data-testid="row-click"
+        data-testid={`click-${order.id}`}
       >
         <TableCell>
           <IconButton aria-label="expand row" size="small">
             {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
           </IconButton>
         </TableCell>
-        <TableCell component="th" scope="row">
+        <TableCell component="th" scope="row" data-testid="row">
           {order.id}
         </TableCell>
         <TableCell>
@@ -41,7 +41,7 @@ const OrderRow = ({ order }) => {
             <Box sx={{ margin: 1 }}>
               <RowDiv>
                 <RowHalfDiv>
-                  <DetailsTitle data-testid="address">Address:</DetailsTitle>
+                  <DetailsTitle data-testid={`address-${order.id}`}>Address:</DetailsTitle>
                   <DetailsText>
                     {order.building} {order.street} Street
                   </DetailsText>
@@ -54,7 +54,7 @@ const OrderRow = ({ order }) => {
                   </TextDiv>
                   <TextDiv>
                     <DetailsTitle>Phone number: </DetailsTitle>
-                    <DetailsText>{order.phoneNumber}</DetailsText>
+                    <DetailsText>{order.phone}</DetailsText>
                   </TextDiv>
                   <TextDiv>
                     <DetailsTitle>Payment method: </DetailsTitle>

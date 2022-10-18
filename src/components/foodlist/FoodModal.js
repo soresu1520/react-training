@@ -8,28 +8,28 @@ import CloseIcon from "@mui/icons-material/Close";
 const FoodModal = ({ onClose, open, food }) => {
   return (
     <Dialog onClose={onClose} open={open} maxWidth="sm" fullWidth>
-      <StyledDialogTitle>
+      <StyledDialogTitle data-testid={`title-${food.id}`}>
         {food.name}
-        {onClose ? (
-          <IconButton
-            aria-label="close"
-            onClick={onClose}
-            sx={{
-              position: "absolute",
-              right: 8,
-              top: 8,
-              color: theme => theme.palette.grey[500],
-            }}
-          >
-            <CloseIcon />
-          </IconButton>
-        ) : null}
+        <IconButton
+          aria-label="close"
+          onClick={onClose}
+          sx={{
+            position: "absolute",
+            right: 8,
+            top: 8,
+            color: theme => theme.palette.grey[500],
+          }}
+        >
+          <CloseIcon />
+        </IconButton>
       </StyledDialogTitle>
       <DialogContent>
         <ModalSubtitle>Allergens</ModalSubtitle>
         <AllergensDiv>
           {food.allergens.map(allergen => (
-            <Allergen key={allergen}>{allergen}</Allergen>
+            <Allergen key={allergen} data-testid="allergen">
+              {allergen}
+            </Allergen>
           ))}
         </AllergensDiv>
         <ModalSubtitle>Description</ModalSubtitle>

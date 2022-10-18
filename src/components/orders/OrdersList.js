@@ -2,28 +2,21 @@ import { PageDiv, PageTitle, TitleDiv } from "../../styles/StyledComponents";
 import ListAltIcon from "@mui/icons-material/ListAlt";
 import OrdersTable from "./OdersTable";
 import { useState, useEffect } from "react";
-import { getOrders } from "../../server/API";
 import { Message } from "../../styles/StyledComponents";
-import { sortDates } from "../../utils/sort";
+import { fetchOrders } from "../../server/fetch";
 
 const OrdersList = () => {
   const [orders, setOrders] = useState([]);
   const [message, setMessage] = useState("Loading...");
 
   useEffect(() => {
-    fetchOrders();
-  }, []); //eslint-disable-line react-hooks/exhaustive-deps
-
-  const fetchOrders = async () => {
-    try {
-      const response = await getOrders();
-      setOrders(sortDates(response.data));
-      setMessage("");
-    } catch (error) {
-      console.error(error);
-      setMessage("Error. Try again");
-    }
-  };
+    const fetch = async () => {
+      const data = await fetchOrders();
+      setOrders(data.orders);
+      setMessage(data.message);
+    };
+    fetch();
+  }, []);
 
   return (
     <PageDiv>
@@ -41,9 +34,9 @@ const OrdersList = () => {
         (orders.length ? (
           <OrdersTable orders={orders}></OrdersTable>
         ) : (
-          <Message>There are no orders</Message>
+          <Message data-testid="no-orders">There are no orders</Message>
         ))}
-      {message && <Message>{message}</Message>}
+      {message && <Message data-testid="orders-loading">{message}</Message>}
     </PageDiv>
   );
 };

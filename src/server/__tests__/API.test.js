@@ -1,4 +1,4 @@
-import { getAllFood, getCategories, getOrders, postOrder } from "./API";
+import { getAllFood, getCategories, getOrders, postOrder } from "../API";
 import axios from "axios";
 
 jest.mock("axios");

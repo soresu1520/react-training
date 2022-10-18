@@ -20,19 +20,24 @@ const ShoppingCart = () => {
     localStorage.setItem("cart", JSON.stringify(cart));
   }, [cart]); //eslint-disable-line react-hooks/exhaustive-deps
 
-  const changeQuantity = (productId, change) => {
+  const addQuantity = productId => {
     let foundIndex = cart.findIndex(element => element.productId === productId);
     const updatedCart = [...cart];
-    if (change === "ADD" && updatedCart[foundIndex].quantity < 99) {
+    if (updatedCart[foundIndex].quantity < 100) {
       updatedCart[foundIndex].quantity++;
       setCart(updatedCart);
-    } else if (change === "SUB" && updatedCart[foundIndex].quantity > 1) {
-      updatedCart[foundIndex].quantity--;
-      setCart(updatedCart);
-    } else if (change === "SUB" && updatedCart[foundIndex].quantity === 1) deleteItem(productId);
-    else if (change === "ADD" && updatedCart[foundIndex].quantity === 99) {
+    } else {
       setSnackInfo({ open: true, message: "You cannnot order more than 99", type: "warning" });
     }
+  };
+
+  const subtractQuantity = productId => {
+    let foundIndex = cart.findIndex(element => element.productId === productId);
+    const updatedCart = [...cart];
+    if (updatedCart[foundIndex].quantity > 1) {
+      updatedCart[foundIndex].quantity--;
+      setCart(updatedCart);
+    } else if (updatedCart[foundIndex].quantity === 1) deleteItem(productId);
   };
 
   const deleteItem = productId => {
@@ -59,8 +64,9 @@ const ShoppingCart = () => {
             {cart.map(cartItem => (
               <CartItem
                 cartItem={cartItem}
-                changeQuantity={changeQuantity}
                 deleteItem={deleteItem}
+                addQuantity={addQuantity}
+                subtractQuantity={subtractQuantity}
                 key={cartItem.productId}
               ></CartItem>
             ))}

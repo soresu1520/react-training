@@ -1,20 +1,63 @@
 import CartItem from "../CartItem";
-import { fireEvent, render } from "@testing-library/react";
+import { fireEvent, getByText, render } from "@testing-library/react";
 
 const deleteItem = jest.fn();
-const changeQuantity = jest.fn();
-const item = { productId: 2, name: "Pancakes", price: 5, image: "pancakes.png", quantity: 1 };
+const addQuantity = jest.fn();
+const subtractQuantity = jest.fn();
+const item = { productId: 2, name: "Pancakes", price: 5, image: "pancakes.png", quantity: 2 };
 
-describe("quantity changes correctly", () => {
-  it("quantity increased correctly", async () => {
+it("cart item renders with correct data", () => {
+  const cartItem = render(
+    <CartItem
+      cartItem={item}
+      deleteItem={deleteItem}
+      addQuantity={addQuantity}
+      subtractQuantity={subtractQuantity}
+    />
+  );
+  expect(cartItem.getByText(item.name)).toBeInTheDocument();
+});
+
+describe("change quantity", () => {
+  it("add quantity", async () => {
     const cartItem = render(
-      <CartItem cartItem={item} changeQuantity={changeQuantity} deleteItem={deleteItem} />
+      <CartItem
+        cartItem={item}
+        deleteItem={deleteItem}
+        addQuantity={addQuantity}
+        subtractQuantity={subtractQuantity}
+      />
     );
     fireEvent.click(cartItem.getByTestId("addQuantity"));
-    // expect(changeQuantity).toHaveBeenCalledTimes(1);
-    const quantity = await cartItem.findByTestId("quantity");
-    // expect(quantity).toHaveTextContent(`Quantity: ${item.quantity + 1}`);
+    expect(addQuantity).toHaveBeenCalledTimes(1);
+    expect(addQuantity).toHaveBeenCalledWith(item.productId);
+  });
 
-    //sprawdź czy metoda jest wywołana z odpowiednimi argumentami
+  it("subtract quantity", async () => {
+    const cartItem = render(
+      <CartItem
+        cartItem={item}
+        deleteItem={deleteItem}
+        addQuantity={addQuantity}
+        subtractQuantity={subtractQuantity}
+      />
+    );
+    fireEvent.click(cartItem.getByTestId("subQuantity"));
+    expect(subtractQuantity).toHaveBeenCalledTimes(1);
+    expect(subtractQuantity).toHaveBeenCalledWith(item.productId);
+  });
+
+  it("delete item", async () => {
+    const cartItem = render(
+      <CartItem
+        cartItem={item}
+        deleteItem={deleteItem}
+        addQuantity={addQuantity}
+        subtractQuantity={subtractQuantity}
+      />
+    );
+    fireEvent.click(cartItem.getByTestId("delete"));
+    expect(deleteItem).toHaveBeenCalledTimes(1);
+    expect(deleteItem).toHaveBeenCalledWith(item.productId);
   });
 });

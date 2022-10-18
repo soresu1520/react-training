@@ -68,6 +68,7 @@ const SummaryForm = ({ handlePayment, payment, onSubmit }) => {
             })}
             error={!!errors.zip}
             helperText={errors.zip ? errors.zip.message : ""}
+            data-testid="zipcode"
           />
 
           <TextInput
@@ -83,19 +84,21 @@ const SummaryForm = ({ handlePayment, payment, onSubmit }) => {
             })}
             error={!!errors.email}
             helperText={errors.email ? errors.email.message : ""}
+            data-testid="email"
           />
           <TextInput
             label="Phone Number"
             variant="outlined"
             margin="dense"
-            {...register("phoneNumber", {
+            {...register("phone", {
               pattern: {
                 value: /^\d{9}$/,
                 message: "Invalid phone number",
               },
             })}
-            error={!!errors.phoneNumber}
-            helperText={errors.phoneNumber ? errors.phoneNumber.message : ""}
+            error={!!errors.phone}
+            helperText={errors.phone ? errors.phone.message : ""}
+            data-testid="phone"
           />
           <TextInputNotes
             label="Additional Information"
@@ -116,7 +119,7 @@ const SummaryForm = ({ handlePayment, payment, onSubmit }) => {
           </ToggleGroupStyled>
         </PaymentDiv>
         <ButtonDiv>
-          <OrderButton>Order</OrderButton>
+          <OrderButton data-testid="submit">Order</OrderButton>
         </ButtonDiv>
       </form>
     </div>

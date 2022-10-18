@@ -30,7 +30,11 @@ const order = {
   ],
 };
 
-it("row shows and hides correctly", async () => {
+it("row renders with correct data", () => {
+  const setState = jest.fn();
+  const useStateSpy = jest.spyOn(React, "useState");
+  useStateSpy.mockImplementation(init => [init, setState]);
+
   const orderRow = render(
     <table>
       <tbody>
@@ -38,15 +42,44 @@ it("row shows and hides correctly", async () => {
       </tbody>
     </table>
   );
-  const rowClick = await orderRow.findByTestId("row-click");
+  expect(orderRow.getByText(order.id)).toBeInTheDocument();
+});
 
-  // const setState = jest.fn();
-  // const useStateSpy = jest.spyOn(React, "useState");
-  // useStateSpy.mockImplementation(initialState => [initialState, setState]);
+describe("row shows and hides correctly", () => {
+  const setState = jest.fn();
+  const useStateSpy = jest.spyOn(React, "useState");
 
-  // fireEvent.click(rowClick);
-  // expect(setState).toHaveBeenCalledWith(false);
+  it("row shows correctly", async () => {
+    useStateSpy.mockImplementation(init => [init, setState]);
 
-  // fireEvent.click(rowClick);
-  // expect(setState).toHaveBeenCalledWith(true);
+    const orderRow = render(
+      <table>
+        <tbody>
+          <OrderRow order={order} />
+        </tbody>
+      </table>
+    );
+    const rowClick = await orderRow.findByTestId(`click-${order.id}`);
+
+    fireEvent.click(rowClick);
+    expect(setState).toHaveBeenCalledWith(true);
+    expect(setState).toHaveBeenCalledTimes(1);
+  });
+
+  it("row hides correctly", async () => {
+    useStateSpy.mockImplementation(init => [(init = true), setState]);
+
+    const orderRow = render(
+      <table>
+        <tbody>
+          <OrderRow order={order} />
+        </tbody>
+      </table>
+    );
+    const rowClick = await orderRow.findByTestId(`click-${order.id}`);
+
+    fireEvent.click(rowClick);
+    expect(setState).toHaveBeenCalledWith(false);
+    expect(setState).toHaveBeenCalledTimes(1);
+  });
 });

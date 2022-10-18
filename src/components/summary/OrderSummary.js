@@ -113,7 +113,7 @@ const OrderSummary = () => {
         </div>
       )}
 
-      {snackInfo.open ? <SnackbarMessage></SnackbarMessage> : null}
+      {snackInfo.open && <SnackbarMessage />}
 
       {!cart.length && <Message>{message}</Message>}
     </PageDiv>
