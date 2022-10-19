@@ -1,18 +1,14 @@
-import { fetchOrders } from "../fetch";
-import { getOrders } from "../API";
-import { sortDates } from "../../utils/sort";
+import { fetchAllFood, fetchOrders, fetchCategories } from "../fetch";
+import { getAllFood, getOrders, getCategories } from "../API";
 
 jest.mock("../API", () => ({
   ...jest.requireActual("../API"),
   getOrders: jest.fn(),
+  getAllFood: jest.fn(),
+  getCategories: jest.fn(),
 }));
 
-jest.mock("../../utils/sort", () => ({
-  ...jest.requireActual("../../utils/sort"),
-  sortDates: jest.fn(),
-}));
-
-const response = {
+const responseOrders = {
   data: [
     {
       id: "1231",
@@ -66,9 +62,54 @@ const response = {
   ],
 };
 
+const responseFood = {
+  data: [
+    {
+      id: 1,
+      name: "Salad",
+      price: 5,
+      categoryId: "c1",
+      image: "salad.png",
+      allergens: ["almonds"],
+    },
+    {
+      id: 2,
+      name: "Pancakes",
+      price: 5,
+      categoryId: "c2",
+      image: "pancakes.png",
+      allergens: ["milk", "eggs", "wheat"],
+    },
+  ],
+};
+
+const responseCategories = {
+  data: [
+    {
+      categoryName: "Salad",
+      categoryId: "c1",
+    },
+    {
+      categoryName: "Dessert",
+      categoryId: "c2",
+    },
+  ],
+};
+
+const sortedCategories = [
+  {
+    categoryName: "Dessert",
+    categoryId: "c2",
+  },
+  {
+    categoryName: "Salad",
+    categoryId: "c1",
+  },
+];
+
 describe("fetch orders", () => {
   test("fetch orders calls API", async () => {
-    getOrders.mockResolvedValueOnce(response);
+    getOrders.mockResolvedValueOnce(responseOrders);
     await fetchOrders();
     expect(getOrders).toBeCalledTimes(1);
   });
@@ -77,5 +118,28 @@ describe("fetch orders", () => {
     getOrders.mockRejectedValue("Error");
     const fetchedData = await fetchOrders();
     expect(fetchedData).toEqual({ orders: [], message: "Error. Try again" });
+  });
+});
+
+describe("fetch food", () => {
+  test("fetch food calls API", async () => {
+    getAllFood.mockResolvedValueOnce(responseFood);
+    await fetchAllFood();
+    expect(getAllFood).toBeCalledTimes(1);
+  });
+
+  test("fetch food throws error", async () => {
+    getAllFood.mockRejectedValue("Error");
+    const fetchedData = await fetchAllFood();
+    expect(fetchedData).toEqual({ food: [], message: "Error. Try again" });
+  });
+});
+
+describe("fetch categories", () => {
+  test("fetch categories calls API and sorts data", async () => {
+    getCategories.mockResolvedValueOnce(responseCategories);
+    const categories = await fetchCategories();
+    expect(getCategories).toBeCalledTimes(1);
+    expect(categories).toEqual(sortedCategories);
   });
 });

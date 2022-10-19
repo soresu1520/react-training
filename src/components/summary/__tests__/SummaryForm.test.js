@@ -53,7 +53,7 @@ describe("form validation", () => {
       <SummaryForm handlePayment={handlePayment} payment="PayPal" onSubmit={onSubmit} />
     );
     const submitButton = summaryForm.getByTestId("submit");
-    //const emailInput = summaryForm.getByRole("textbox", { name: /email/i });
+    // const emailInput = summaryForm.getByRole("textbox", { name: /email/i });
 
     //userEvent.type(emailInput, "333");
     fireEvent.click(submitButton);

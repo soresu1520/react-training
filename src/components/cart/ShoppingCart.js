@@ -86,7 +86,7 @@ const ShoppingCart = () => {
 
       {!cart.length && <Message>{messege}</Message>}
 
-      {snackInfo.open === true ? <SnackbarMessage></SnackbarMessage> : <div></div>}
+      {snackInfo.open && <SnackbarMessage></SnackbarMessage>}
     </PageDiv>
   );
 };

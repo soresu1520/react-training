@@ -37,7 +37,7 @@ const FoodItem = ({ foodItem }) => {
   };
 
   return (
-    <DivCard>
+    <DivCard data-testid="food-card">
       <DivTitle>
         <CardTitle onClick={handleClickOpen}>{foodItem.name}</CardTitle>
         <CardSubtitle>$ {foodItem.price.toFixed(2)}</CardSubtitle>

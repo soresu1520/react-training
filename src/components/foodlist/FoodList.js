@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 import LocalDiningIcon from "@mui/icons-material/LocalDining";
-import { getAllFood, getCategories } from "../../server/API";
 import FoodItem from "./FoodItem";
 import { sortData } from "../../utils/sort/index.js";
+import { fetchAllFood, fetchCategories } from "../../server/fetch";
 import {
   PageDiv,
   TitleDiv,
@@ -24,34 +24,20 @@ const FoodList = () => {
   const [loadItems, setLoadItems] = useState(ITEMS_ON_PAGE);
 
   useEffect(() => {
+    const fetchFood = async () => {
+      const data = await fetchAllFood(sortCriteria);
+      setFood(data.food);
+      setUnfilteredFood(data.food);
+      setMessage(data.message);
+    };
     fetchFood();
-    fetchCategories();
+
+    const fetchCategory = async () => {
+      const data = await fetchCategories();
+      setCategories([{ categoryName: "All", categoryId: "c0" }, ...data]);
+    };
+    fetchCategory();
   }, []); //eslint-disable-line react-hooks/exhaustive-deps
-
-  const fetchFood = async () => {
-    try {
-      const response = await getAllFood();
-      setFood(sortData(response.data, sortCriteria));
-      setUnfilteredFood(sortData(response.data, sortCriteria));
-      setMessage("");
-    } catch (error) {
-      console.error(error);
-      setMessage("Error. Try again");
-    }
-  };
-
-  const fetchCategories = async () => {
-    try {
-      const response = await getCategories();
-      const sortedCategories = response.data.sort((a, b) =>
-        a.categoryName.localeCompare(b.categoryName)
-      );
-      setCategories([{ categoryName: "All", categoryId: "c0" }, ...sortedCategories]);
-    } catch (error) {
-      console.error(error);
-      setMessage("Error. Try again");
-    }
-  };
 
   const sortFood = e => {
     const criteria = e.target.value;
@@ -91,7 +77,7 @@ const FoodList = () => {
       <CategoryDiv>
         {!message &&
           categories.map((category, i) => (
-            <SecondaryButton onClick={() => filterFood(category)} key={i}>
+            <SecondaryButton data-testid="category" onClick={() => filterFood(category)} key={i}>
               {category.categoryName}
             </SecondaryButton>
           ))}
@@ -118,7 +104,10 @@ const FoodList = () => {
 
       <DivButton>
         {loadItems < food.length && (
-          <Button onClick={() => setLoadItems(prevState => prevState + ITEMS_ON_PAGE)}>
+          <Button
+            data-testid="load-more"
+            onClick={() => setLoadItems(prevState => prevState + ITEMS_ON_PAGE)}
+          >
             Load more
           </Button>
         )}
