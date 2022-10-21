@@ -45,8 +45,7 @@ const OrderSummary = () => {
     };
 
     try {
-      const response = await postOrder(data);
-      console.log(response);
+      await postOrder(data);
       setSnackInfo({ open: true, message: "Order successful", type: "success" });
       localStorage.removeItem("cart");
       navigate("/");
@@ -59,8 +58,8 @@ const OrderSummary = () => {
   return (
     <PageDiv>
       {!message && (
-        <div>
-          <SummaryPageDiv>
+        <SummaryPageDiv>
+          <SummaryContentDiv>
             <SummaryTitleDiv>
               <FormTitleDiv>
                 <PageTitle>Form</PageTitle>
@@ -74,7 +73,14 @@ const OrderSummary = () => {
               </FormTitleDiv>
               <PageSubtitle>Fill out the form so that we can deliver your food to you</PageSubtitle>
             </SummaryTitleDiv>
+            <SummaryForm
+              payment={payment}
+              handlePayment={handlePayment}
+              onSubmit={onSubmit}
+            ></SummaryForm>
+          </SummaryContentDiv>
 
+          <SummaryContentDiv>
             <SummaryTitleDiv>
               <TitleDiv>
                 <PageTitle>Summary</PageTitle>
@@ -87,30 +93,17 @@ const OrderSummary = () => {
                 ></GradingOutlinedIcon>
               </TitleDiv>
             </SummaryTitleDiv>
-          </SummaryPageDiv>
+            <ItemsDiv>
+              {cart.map(cartItem => (
+                <SummaryItem cartItem={cartItem} key={cartItem.productId}></SummaryItem>
+              ))}
+            </ItemsDiv>
 
-          <SummaryPageDiv>
-            <SummaryContentDiv>
-              <SummaryForm
-                payment={payment}
-                handlePayment={handlePayment}
-                onSubmit={onSubmit}
-              ></SummaryForm>
-            </SummaryContentDiv>
-
-            <SummaryContentDiv>
-              <ItemsDiv>
-                {cart.map(cartItem => (
-                  <SummaryItem cartItem={cartItem} key={cartItem.productId}></SummaryItem>
-                ))}
-              </ItemsDiv>
-
-              <SummaryPriceDiv>
-                <SummaryPrice price={price} deliveryPrice={deliveryPrice}></SummaryPrice>
-              </SummaryPriceDiv>
-            </SummaryContentDiv>
-          </SummaryPageDiv>
-        </div>
+            <SummaryPriceDiv>
+              <SummaryPrice price={price} deliveryPrice={deliveryPrice}></SummaryPrice>
+            </SummaryPriceDiv>
+          </SummaryContentDiv>
+        </SummaryPageDiv>
       )}
 
       {snackInfo.open && <SnackbarMessage />}
@@ -127,6 +120,11 @@ const SummaryPageDiv = styled.div`
   flex-flow: row;
   align-items: flex-start;
   gap: 5%;
+
+  @media (max-width: 1000px) {
+    flex-flow: column;
+    align-items: center;
+  }
 `;
 
 const SummaryTitleDiv = styled.div`
@@ -135,6 +133,10 @@ const SummaryTitleDiv = styled.div`
 
 const SummaryContentDiv = styled(SummaryTitleDiv)`
   margin-top: 1em;
+
+  @media (max-width: 1000px) {
+    width: 100%;
+  }
 `;
 
 const FormTitleDiv = styled.div`
@@ -149,6 +151,17 @@ const ItemsDiv = styled.div`
   align-items: center;
   align-items: flex-start;
   border: 1px solid var(--color-greyscale-200);
+  margin-top: 2.1em;
+
+  @media (max-width: 1000px) {
+    margin-top: 1em;
+  }
+
+  @media (max-width: 550px) {
+    flex-flow: row wrap;
+    align-items: center;
+    justify-content: center;
+  }
 `;
 
 const SummaryPriceDiv = styled.div`

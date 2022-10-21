@@ -28,9 +28,7 @@
       "price": 5,
       "categoryId": "c1",
       "image": "salad.png",
-      "allergens": [
-        "almonds"
-      ]
+      "allergens": ["almonds"]
     },
     {
       "id": 2,
@@ -38,11 +36,7 @@
       "price": 5,
       "categoryId": "c2",
       "image": "pancakes.png",
-      "allergens": [
-        "milk",
-        "eggs",
-        "wheat"
-      ]
+      "allergens": ["milk", "eggs", "wheat"]
     },
     {
       "id": 3,
@@ -50,20 +44,15 @@
       "price": 6,
       "categoryId": "c3",
       "image": "tacos.png",
-      "allergens": [
-        "wheat"
-      ]
+      "allergens": ["wheat"]
     },
     {
       "id": 4,
-      "name": "Strawberry Cake",
+      "name": "Cake",
       "price": 4.5,
       "categoryId": "c2",
       "image": "scake.png",
-      "allergens": [
-        "milk",
-        "eggs"
-      ]
+      "allergens": ["milk", "eggs"]
     },
     {
       "id": 5,
@@ -71,11 +60,7 @@
       "price": 12,
       "categoryId": "c4",
       "image": "ramen.png",
-      "allergens": [
-        "eggs",
-        "soy",
-        "wheat"
-      ]
+      "allergens": ["eggs", "soy", "wheat"]
     },
     {
       "id": 6,
@@ -83,10 +68,7 @@
       "price": 7,
       "categoryId": "c5",
       "image": "farfalle.png",
-      "allergens": [
-        "eggs",
-        "wheat"
-      ]
+      "allergens": ["eggs", "wheat"]
     }
   ],
   "orders": [
@@ -161,7 +143,7 @@
       "items": [
         {
           "productId": 4,
-          "name": "Strawberry Cake",
+          "name": "Cake",
           "price": 4.5,
           "categoryId": "c2",
           "image": "scake.png",

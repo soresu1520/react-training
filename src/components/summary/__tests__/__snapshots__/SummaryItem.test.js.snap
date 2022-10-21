@@ -2,22 +2,23 @@
 
 exports[`summary item renders correctly 1`] = `
 <div
-  className="sc-bczRLJ dZfTmQ"
+  className="sc-bczRLJ jaAqGV"
+  data-testid="summary-item"
 >
   <img
-    className="sc-hKMtZM gOsHjP"
+    className="sc-eCYdqJ eYzrYi"
     src="/assets/food/undefined"
   />
   <h5
-    className="sc-gsnTZi YQYov"
+    className="sc-gsnTZi bLgvay"
   />
   <h5
-    className="sc-gsnTZi sc-dkzDqf YQYov KfWFh"
+    className="sc-gsnTZi sc-dkzDqf bLgvay isIQSg"
   >
     x
   </h5>
   <h5
-    className="sc-gsnTZi sc-dkzDqf YQYov KfWFh"
+    className="sc-gsnTZi sc-dkzDqf sc-hKMtZM bLgvay isIQSg dIhHBk"
   >
     NaN
      $

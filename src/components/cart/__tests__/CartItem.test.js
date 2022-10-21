@@ -28,7 +28,7 @@ describe("change quantity", () => {
         subtractQuantity={subtractQuantity}
       />
     );
-    fireEvent.click(cartItem.getByTestId("addQuantity"));
+    fireEvent.click(cartItem.getByTestId(`add-${item.productId}`));
     expect(addQuantity).toHaveBeenCalledTimes(1);
     expect(addQuantity).toHaveBeenCalledWith(item.productId);
   });
@@ -42,7 +42,7 @@ describe("change quantity", () => {
         subtractQuantity={subtractQuantity}
       />
     );
-    fireEvent.click(cartItem.getByTestId("subQuantity"));
+    fireEvent.click(cartItem.getByTestId(`sub-${item.productId}`));
     expect(subtractQuantity).toHaveBeenCalledTimes(1);
     expect(subtractQuantity).toHaveBeenCalledWith(item.productId);
   });
@@ -56,7 +56,7 @@ describe("change quantity", () => {
         subtractQuantity={subtractQuantity}
       />
     );
-    fireEvent.click(cartItem.getByTestId("delete"));
+    fireEvent.click(cartItem.getByTestId(`delete-${item.productId}`));
     expect(deleteItem).toHaveBeenCalledTimes(1);
     expect(deleteItem).toHaveBeenCalledWith(item.productId);
   });

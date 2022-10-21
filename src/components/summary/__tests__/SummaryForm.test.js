@@ -1,5 +1,5 @@
 import SummaryForm from "../SummaryForm";
-import { render, fireEvent, within } from "@testing-library/react";
+import { render, fireEvent, within, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
 const handlePayment = jest.fn();
@@ -53,41 +53,45 @@ describe("form validation", () => {
       <SummaryForm handlePayment={handlePayment} payment="PayPal" onSubmit={onSubmit} />
     );
     const submitButton = summaryForm.getByTestId("submit");
-    // const emailInput = summaryForm.getByRole("textbox", { name: /email/i });
 
-    //userEvent.type(emailInput, "333");
+    const emailInput = summaryForm.getByTestId("email").querySelector("input");
+    expect(emailInput).toBeInTheDocument();
+
+    userEvent.type(emailInput, "333");
     fireEvent.click(submitButton);
     const utils = within(summaryForm.getByTestId("email"));
 
-    //const email = await utils.findByText("Invalid e-mail");
-    //expect(email).toBeInTheDocument();
+    const email = await utils.findByText("Invalid e-mail");
+    expect(email).toBeInTheDocument();
   });
 
-  it("no messages about invalid input on successful submit", async () => {
+  it("no messages about invalid input", async () => {
     const summaryForm = render(
       <SummaryForm handlePayment={handlePayment} payment="PayPal" onSubmit={onSubmit} />
     );
     const submitButton = summaryForm.getByTestId("submit");
 
-    // const firstNameInput = summaryForm.getByRole("textbox", { name: "firstName" });
-    // const lastNameInput = summaryForm.getByRole("textbox", { name: "lastName" });
+    const firstNameInput = summaryForm.getByTestId("first-name").querySelector("input");
+    const lastNameInput = summaryForm.getByTestId("last-name").querySelector("input");
     const streetInput = summaryForm.getByRole("textbox", { name: /street/i });
     const buildingInput = summaryForm.getByRole("textbox", { name: /building/i });
     const cityInput = summaryForm.getByRole("textbox", { name: /city/i });
     const zipInput = summaryForm.getByRole("textbox", { name: /zip/i });
-    // const emailInput = summaryForm.getByRole("textbox", { name: /email/i });
+    const emailInput = summaryForm.getByTestId("email").querySelector("input");
 
-    // userEvent.type(firstNameInput, "Anna");
-    //userEvent.type(lastNameInput, "Kowalska");
+    userEvent.type(firstNameInput, "Anna");
+    userEvent.type(lastNameInput, "Kowalska");
     userEvent.type(streetInput, "Kwiatowa");
     userEvent.type(buildingInput, "23");
     userEvent.type(cityInput, "Wroclaw");
     userEvent.type(zipInput, "55-555");
-    // userEvent.type(emailInput, "mm@mm.com");
+    userEvent.type(emailInput, "mm@mm.com");
 
     fireEvent.click(submitButton);
 
-    const required = await summaryForm.findAllByText("This field is required");
-    expect(required).toHaveLength(3);
+    const required = summaryForm.queryAllByText("This field is required");
+    expect(required).toHaveLength(0);
+
+    await waitFor(() => expect(onSubmit).toHaveBeenCalled());
   });
 });

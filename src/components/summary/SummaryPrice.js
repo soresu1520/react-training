@@ -35,6 +35,10 @@ const PriceDiv = styled.div`
 const SubPriceDiv = styled.div`
   display: flex;
   flex-flow: row nowrap;
+
+  @media (max-width: 550px) {
+    flex-flow: column nowrap;
+  }
 `;
 
 const Line = styled.div`
@@ -48,10 +52,18 @@ const PriceText = styled.h4`
   margin-top: 0;
   margin-bottom: 0.5em;
   flex-basis: 50%;
+
+  @media (max-width: 550px) {
+    text-align: center;
+  }
 `;
 
 const PriceTextRight = styled(PriceText)`
   text-align: right;
+
+  @media (max-width: 550px) {
+    text-align: center;
+  }
 `;
 
 const TotalText = styled.h2`
@@ -60,9 +72,18 @@ const TotalText = styled.h2`
   font-weight: var(--font-weight-heading);
   margin-top: 0.5em;
   margin-bottom: 0;
-  flex-basis: 50%;
+  flex-basis: 40%;
+
+  @media (max-width: 550px) {
+    text-align: center;
+  }
 `;
 
 const TotalTextRight = styled(TotalText)`
   text-align: right;
+  flex-basis: 60%;
+
+  @media (max-width: 550px) {
+    text-align: center;
+  }
 `;

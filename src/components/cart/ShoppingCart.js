@@ -99,6 +99,11 @@ const CartDiv = styled.div`
   justify-content: center;
   align-items: flex-start;
   gap: 5%;
+
+  @media (max-width: 880px) {
+    flex-direction: column;
+    align-items: center;
+  }
 `;
 
 const CartItemsDiv = styled.div`
@@ -107,6 +112,18 @@ const CartItemsDiv = styled.div`
   justify-content: flex-start;
   align-items: flex-start;
   flex-basis: 65%;
+
+  @media (max-width: 880px) {
+    flex-basis: 100%;
+    width: 100%;
+    flex-flow: row wrap;
+    gap: 3%;
+    justify-content: center;
+  }
+
+  @media (max-width: 460px) {
+    flex-direction: column;
+  }
 `;
 
 const CartPriceDiv = styled.div`
@@ -118,6 +135,16 @@ const CartPriceDiv = styled.div`
   background: var(--color-greyscale-50);
   text-align: center;
   padding: 1.7em 1.2em;
+
+  @media (max-width: 880px) {
+    margin-top: 1em;
+    width: 50%;
+  }
+
+  @media (max-width: 460px) {
+    margin-top: 1em;
+    width: 100%;
+  }
 `;
 
 const PriceTitle = styled(PageTitle)`

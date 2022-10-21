@@ -4,23 +4,28 @@ import { SecondaryButton } from "../../styles/StyledComponents";
 
 const CartItem = ({ cartItem, deleteItem, addQuantity, subtractQuantity }) => {
   return (
-    <CartItemDiv>
+    <CartItemDiv data-testid="cart-item">
       <Image src={`/assets/food/${cartItem.image}`} alt={cartItem.name} />
       <CartTitleDiv>
         <CartItemTitle>{cartItem.name}</CartItemTitle>
         <CartItemSubtitle>Price: {cartItem.price.toFixed(2)} $</CartItemSubtitle>
-        <CartItemSubtitle>Quantity: {cartItem.quantity}</CartItemSubtitle>
+        <CartItemSubtitle data-testid={`quantity-${cartItem.productId}`}>
+          Quantity: {cartItem.quantity}
+        </CartItemSubtitle>
         <CartItemPrice>Total: {(cartItem.quantity * cartItem.price).toFixed(2)} $</CartItemPrice>
       </CartTitleDiv>
       <QuantityDiv>
         <QuantityButton
           onClick={() => subtractQuantity(cartItem.productId)}
-          data-testid="subQuantity"
+          data-testid={`sub-${cartItem.productId}`}
         >
           –
         </QuantityButton>
         <QuantityText>{cartItem.quantity}</QuantityText>
-        <QuantityButton onClick={() => addQuantity(cartItem.productId)} data-testid="addQuantity">
+        <QuantityButton
+          onClick={() => addQuantity(cartItem.productId)}
+          data-testid={`add-${cartItem.productId}`}
+        >
           +
         </QuantityButton>
       </QuantityDiv>
@@ -32,7 +37,7 @@ const CartItem = ({ cartItem, deleteItem, addQuantity, subtractQuantity }) => {
           flexBasis: "10%",
           cursor: "pointer",
         }}
-        data-testid="delete"
+        data-testid={`delete-${cartItem.productId}`}
       ></DeleteOutlineOutlinedIcon>
     </CartItemDiv>
   );
@@ -50,12 +55,31 @@ const CartItemDiv = styled.div`
   height: 7em;
   padding: 0;
   margin-bottom: 0.7em;
+
+  @media (max-width: 880px) {
+    flex-direction: column;
+    height: 21em;
+    flex-basis: 30%;
+  }
+
+  @media (max-width: 650px) {
+    flex-basis: 47%;
+  }
 `;
 
 const Image = styled.img`
   height: 100%;
   width: auto;
   margin: 0;
+
+  @media (max-width: 880px) {
+    height: 30%;
+    margin-top: 0.5em;
+  }
+
+  @media (max-width: 460px) {
+    width: 50%;
+    heigth: auto;
 `;
 
 const CartTitleDiv = styled.div`
@@ -69,6 +93,10 @@ const CartItemTitle = styled.h4`
   color: var(--dark-icon);
   margin-top: 0;
   margin-bottom: 0;
+
+  @media (max-width: 880px) {
+    text-align: center;
+  }
 `;
 
 const CartItemSubtitle = styled.h5`
@@ -77,6 +105,10 @@ const CartItemSubtitle = styled.h5`
   color: var(--color-greyscale-600);
   margin-top: 0;
   margin-bottom: 0;
+
+  @media (max-width: 880px) {
+    text-align: center;
+  }
 `;
 
 const CartItemPrice = styled.h4`
@@ -85,6 +117,10 @@ const CartItemPrice = styled.h4`
   font-weight: var(--font-weight-heading);
   margin-top: 0.5em;
   margin-bottom: 0;
+
+  @media (max-width: 880px) {
+    text-align: center;
+  }
 `;
 
 const QuantityDiv = styled.div`

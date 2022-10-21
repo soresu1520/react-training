@@ -1,5 +1,5 @@
 import FoodList from "../FoodList";
-import { render, fireEvent, waitFor } from "@testing-library/react";
+import { render, fireEvent, waitFor, within } from "@testing-library/react";
 import { fetchAllFood, fetchCategories } from "../../../server/fetch";
 
 jest.mock("../../../server/fetch", () => ({
@@ -113,8 +113,42 @@ it("button loads more food items", async () => {
   expect(foodList.getAllByTestId("food-card")).toHaveLength(6);
 });
 
-it("sorting works", () => {
-  // const foodList = render(<FoodList />);
-  // fireEvent.click(foodList.getByTestId("sort"));
-  // //TODO
+it("food is filtered by desserts and then by all categories", async () => {
+  fetchAllFood.mockResolvedValueOnce({ food: food, message: "" });
+  fetchCategories.mockResolvedValueOnce(categories);
+
+  const foodList = render(<FoodList />);
+
+  await waitFor(() => {
+    expect(foodList.getAllByTestId("food-card")).toHaveLength(5);
+    expect(foodList.getAllByTestId("category")).toHaveLength(categories.length + 1);
+  });
+
+  const category = foodList.getByRole("button", { name: /Dessert/i });
+  const utils = within(foodList.getByTestId("food-list"));
+  fireEvent.click(category);
+
+  expect(foodList.getAllByTestId("food-card")).toHaveLength(2);
+  expect(utils.getByText("Pancakes")).toBeInTheDocument();
+  expect(utils.queryByText("Ramen")).not.toBeInTheDocument();
+
+  const all = foodList.getByRole("button", { name: /All/i });
+  fireEvent.click(all);
+  expect(foodList.getAllByTestId("food-card")).toHaveLength(5);
+});
+
+test("sorting works correctly", async () => {
+  fetchAllFood.mockResolvedValueOnce({ food: food, message: "" });
+  fetchCategories.mockResolvedValueOnce(categories);
+
+  const foodList = render(<FoodList />);
+
+  await waitFor(() => {
+    expect(foodList.getAllByTestId("food-card")).toHaveLength(5);
+  });
+
+  fireEvent.change(foodList.getByTestId("sort"), { target: { value: "alphabetDesc" } });
+
+  const items = foodList.getAllByTestId("food-card");
+  expect(items[0]).toHaveTextContent("Tacos");
 });

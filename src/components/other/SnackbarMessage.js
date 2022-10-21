@@ -24,7 +24,7 @@ const SnackbarMessage = () => {
   );
 
   return (
-    <div>
+    <div data-testid="snackbar">
       <Snackbar
         open={snackInfo.open}
         autoHideDuration={3000}

@@ -2,7 +2,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useState } from "react";
 import "./App.css";
 import styled from "styled-components";
-import FoodList from "./components/foodlist/FoodList";
+import FoodList from "./components/foodList/FoodList";
 import OrdersList from "./components/orders/OrdersList";
 import OrderSummary from "./components/summary/OrderSummary";
 import Footer from "./components/other/Footer";

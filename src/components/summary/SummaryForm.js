@@ -23,6 +23,7 @@ const SummaryForm = ({ handlePayment, payment, onSubmit }) => {
             {...register("firstName", { required: "This field is required" })}
             error={!!errors.firstName}
             helperText={errors.firstName ? errors.firstName.message : ""}
+            data-testid="first-name"
           />
           <TextInput
             label="Last Name"
@@ -31,6 +32,7 @@ const SummaryForm = ({ handlePayment, payment, onSubmit }) => {
             {...register("lastName", { required: "This field is required" })}
             error={!!errors.lastName}
             helperText={errors.lastName ? errors.lastName.message : ""}
+            data-testid="last-name"
           />
           <TextInput
             label="Street"
@@ -136,6 +138,10 @@ const FormDiv = styled.div`
 
 const TextInput = styled(TextField)({
   flexBasis: "47.5%",
+
+  "@media (max-width:550px)": {
+    flexBasis: "100%",
+  },
 });
 
 const TextInputNotes = styled(TextField)({

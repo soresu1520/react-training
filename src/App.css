@@ -19,4 +19,13 @@
 
   --font-weight-heading: 500;
   --font-weight-heading-light: 400;
+
+  /* BREAKPOINTS */
+  --breakpoint-fl1: 850px;
+  --breakpoint-fl2: 780px;
+  --breakpoint-fl3: 610px;
+  --breakpoint-fl4: 496px;
+
+  --breakpoint-sc1: 880px;
+  --breakpoint-sc2: 650px;
 }

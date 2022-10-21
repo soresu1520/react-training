@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import SnackbarMessage from "../other/SnackbarMessage";
+import { addToCart } from "../../utils/cart";
 import { useContext } from "react";
 import SnackbarContext from "../../context/SnackbarContext";
 import { Button } from "../../styles/StyledComponents";
@@ -20,20 +21,9 @@ const FoodItem = ({ foodItem }) => {
 
   const addItemToCart = () => {
     const cart = JSON.parse(localStorage.getItem("cart")) || [];
-    const isInCart = cart.findIndex(e => e.productId === foodItem.id);
-    if (isInCart > -1) {
-      cart[isInCart].quantity = cart[isInCart].quantity + 1;
-    } else {
-      cart.push({
-        productId: foodItem.id,
-        name: foodItem.name,
-        price: foodItem.price,
-        image: foodItem.image,
-        quantity: 1,
-      });
-    }
+    const updatedCart = addToCart(cart, foodItem);
     setSnackInfo({ open: true, message: "Item added to cart!", type: "success" });
-    localStorage.setItem("cart", JSON.stringify(cart));
+    localStorage.setItem("cart", JSON.stringify(updatedCart));
   };
 
   return (
@@ -44,7 +34,9 @@ const FoodItem = ({ foodItem }) => {
       </DivTitle>
       <Image src={`/assets/food/${foodItem.image}`} alt={foodItem.name} onClick={handleClickOpen} />
       <DivButton>
-        <Button onClick={addItemToCart}>Add to cart</Button>
+        <Button onClick={addItemToCart} data-testid={`add-${foodItem.id}`}>
+          Add to cart
+        </Button>
       </DivButton>
       {snackInfo.open && <SnackbarMessage></SnackbarMessage>}
       <FoodModal open={open} onClose={handleClose} food={foodItem} />
@@ -61,6 +53,22 @@ const DivCard = styled.div`
   background: var(--color-white);
   border: 1px solid var(--color-light-200);
   margin-bottom: 2em;
+
+  @media (max-width: 850px) {
+    flex-basis: 22%;
+  }
+
+  @media (max-width: 780px) {
+    flex-basis: 28%;
+  }
+
+  @media (max-width: 610px) {
+    flex-basis: 40%;
+  }
+
+  @media (max-width: 496px) {
+    flex-basis: 90%;
+  }
 `;
 
 const DivTitle = styled.div`

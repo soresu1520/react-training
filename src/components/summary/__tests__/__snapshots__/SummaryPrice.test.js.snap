@@ -41,12 +41,12 @@ exports[`summary price renders correctly 1`] = `
     className="sc-gsnTZi bonspk"
   >
     <h2
-      className="sc-jSMfEi dbELcy"
+      className="sc-jSMfEi jVWWNL"
     >
       Total
     </h2>
     <h2
-      className="sc-jSMfEi sc-gKXOVf dbELcy SvXlG"
+      className="sc-jSMfEi sc-gKXOVf jVWWNL csYacS"
       data-testid="totalPrice"
     >
       9.00

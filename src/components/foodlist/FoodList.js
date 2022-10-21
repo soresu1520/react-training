@@ -60,7 +60,7 @@ const FoodList = () => {
 
   return (
     <PageDiv>
-      <TitleDiv>
+      <ResponsiveTitleDiv>
         <div>
           <PageTitle>Order your favourite food</PageTitle>
           <PageSubtitle>Browse dishes below and add them to your cart</PageSubtitle>
@@ -72,7 +72,7 @@ const FoodList = () => {
             marginLeft: "0.5em",
           }}
         ></LocalDiningIcon>
-      </TitleDiv>
+      </ResponsiveTitleDiv>
 
       <CategoryDiv>
         {!message &&
@@ -93,7 +93,7 @@ const FoodList = () => {
         </Select>
       </DivSelect>
 
-      <DivList>
+      <DivList data-testid="food-list">
         {message && <Message>{message}</Message>}
 
         {!message &&
@@ -117,6 +117,26 @@ const FoodList = () => {
 };
 
 export default FoodList;
+
+const ResponsiveTitleDiv = styled(TitleDiv)`
+  @media (max-width: 780px) {
+    flex-flow: column wrap;
+    align-items: center;
+    text-align: center;
+  }
+
+  @media (max-width: 610px) {
+    flex-flow: column wrap;
+    align-items: center;
+    text-align: center;
+  }
+
+  @media (max-width: 496px) {
+    flex-flow: column wrap;
+    align-items: center;
+    text-align: center;
+  }
+`;
 
 const CategoryDiv = styled.div`
   display: flex;
@@ -157,6 +177,22 @@ const DivList = styled.div`
   align-self: flex-start;
   gap: 2% 2%;
   padding-right: 0;
+
+  @media (max-width: 850px) {
+    gap: 2% 2%;
+  }
+
+  @media (max-width: 780px) {
+    gap: 2% 3%;
+  }
+
+  @media (max-width: 610px) {
+    gap: 2% 5%;
+  }
+
+  @media (max-width: 496px) {
+    gap: 2% 2%;
+  }
 `;
 
 const DivButton = styled.div`

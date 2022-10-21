@@ -2,11 +2,11 @@ import styled from "styled-components";
 
 const SummaryItem = ({ cartItem }) => {
   return (
-    <SummaryItemDiv>
+    <SummaryItemDiv data-testid="summary-item">
       <Image src={`/assets/food/${cartItem.image}`} alt={cartItem.name} />
       <ItemText>{cartItem.name}</ItemText>
-      <SmallItemText>x{cartItem.quantity}</SmallItemText>
-      <SmallItemText>{(cartItem.quantity * cartItem.price).toFixed(2)} $</SmallItemText>
+      <ItemTextSmallBasis>x{cartItem.quantity}</ItemTextSmallBasis>
+      <ItemTextRight>{(cartItem.quantity * cartItem.price).toFixed(2)} $</ItemTextRight>
     </SummaryItemDiv>
   );
 };
@@ -20,6 +20,12 @@ const SummaryItemDiv = styled.div`
   height: 4em;
   width: 100%;
   padding: 0.5em 0.7em;
+
+  @media (max-width: 550px) {
+    flex-flow: column nowrap;
+    height: 7em;
+    flex-basis: 40%;
+  }
 `;
 
 const ItemText = styled.h5`
@@ -28,12 +34,17 @@ const ItemText = styled.h5`
   color: var(--dark-icon);
   margin-top: 0;
   margin-bottom: 0;
-  flex-basis: 35%;
+  flex-basis: 30%;
 `;
 
-const SmallItemText = styled(ItemText)`
-  flex-basis: 25%;
+const ItemTextSmallBasis = styled(ItemText)`
+  flex-basis: 20%;
   text-align: center;
+`;
+
+const ItemTextRight = styled(ItemTextSmallBasis)`
+  flex-basis: 20%;
+  text-align: right;
 `;
 
 const Image = styled.img`
@@ -41,4 +52,8 @@ const Image = styled.img`
   width: auto;
   margin: 0;
   padding-right: 0.7em;
+
+  @media (max-width: 550px) {
+    height: 50%;
+  }
 `;
