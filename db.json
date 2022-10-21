@@ -19,6 +19,10 @@
     {
       "categoryName": "Pasta",
       "categoryId": "c5"
+    },
+    {
+      "categoryName": "Fast Food",
+      "categoryId": "c6"
     }
   ],
   "food": [
@@ -28,7 +32,9 @@
       "price": 5,
       "categoryId": "c1",
       "image": "salad.png",
-      "allergens": ["almonds"]
+      "allergens": [
+        "almonds"
+      ]
     },
     {
       "id": 2,
@@ -36,7 +42,11 @@
       "price": 5,
       "categoryId": "c2",
       "image": "pancakes.png",
-      "allergens": ["milk", "eggs", "wheat"]
+      "allergens": [
+        "milk",
+        "eggs",
+        "wheat"
+      ]
     },
     {
       "id": 3,
@@ -44,7 +54,9 @@
       "price": 6,
       "categoryId": "c3",
       "image": "tacos.png",
-      "allergens": ["wheat"]
+      "allergens": [
+        "wheat"
+      ]
     },
     {
       "id": 4,
@@ -52,7 +64,10 @@
       "price": 4.5,
       "categoryId": "c2",
       "image": "scake.png",
-      "allergens": ["milk", "eggs"]
+      "allergens": [
+        "milk",
+        "eggs"
+      ]
     },
     {
       "id": 5,
@@ -60,7 +75,11 @@
       "price": 12,
       "categoryId": "c4",
       "image": "ramen.png",
-      "allergens": ["eggs", "soy", "wheat"]
+      "allergens": [
+        "eggs",
+        "soy",
+        "wheat"
+      ]
     },
     {
       "id": 6,
@@ -68,7 +87,73 @@
       "price": 7,
       "categoryId": "c5",
       "image": "farfalle.png",
-      "allergens": ["eggs", "wheat"]
+      "allergens": [
+        "eggs",
+        "wheat"
+      ]
+    },
+    {
+      "id": 7,
+      "name": "Pizza",
+      "price": 15,
+      "categoryId": "c6",
+      "image": "pizza.png",
+      "allergens": [
+        "eggs",
+        "wheat"
+      ]
+    },
+    {
+      "id": 8,
+      "name": "Sushi",
+      "price": 8,
+      "categoryId": "c4",
+      "image": "sushi.png",
+      "allergens": [
+        "soy"
+      ]
+    },
+    {
+      "id": 9,
+      "name": "Burger",
+      "price": 6,
+      "categoryId": "c6",
+      "image": "burger.png",
+      "allergens": [
+        "wheat"
+      ]
+    },
+    {
+      "id": 10,
+      "name": "Penne",
+      "price": 7,
+      "categoryId": "c5",
+      "image": "penne.png",
+      "allergens": [
+        "eggs",
+        "wheat"
+      ]
+    },
+    {
+      "id": 11,
+      "name": "Fusilli",
+      "price": 6.5,
+      "categoryId": "c5",
+      "image": "fusilli.png",
+      "allergens": [
+        "eggs",
+        "wheat"
+      ]
+    },
+    {
+      "id": 12,
+      "name": "Tiramisu",
+      "price": 4.5,
+      "categoryId": "c2",
+      "image": "scake.png",
+      "allergens": [
+        "milk"
+      ]
     }
   ],
   "orders": [
@@ -401,6 +486,44 @@
           "price": 7,
           "image": "farfalle.png",
           "quantity": 3
+        }
+      ]
+    },
+    {
+      "firstName": "gtt",
+      "lastName": "gt",
+      "street": "gt",
+      "building": "gt",
+      "city": "gt",
+      "zip": "55-555",
+      "email": "mam@mm.com",
+      "phone": "777555444",
+      "notes": "gtgt",
+      "id": "EB8CC3B7",
+      "payment": "PayU",
+      "price": 45,
+      "date": "21/10/2022",
+      "items": [
+        {
+          "productId": 1,
+          "name": "Salad",
+          "price": 5,
+          "image": "salad.png",
+          "quantity": 4
+        },
+        {
+          "productId": 6,
+          "name": "Farfalle",
+          "price": 7,
+          "image": "farfalle.png",
+          "quantity": 2
+        },
+        {
+          "productId": 4,
+          "name": "Cake",
+          "price": 4.5,
+          "image": "scake.png",
+          "quantity": 2
         }
       ]
     }

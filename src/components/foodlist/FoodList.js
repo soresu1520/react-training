@@ -15,7 +15,7 @@ import {
 } from "../../styles/StyledComponents";
 
 const FoodList = () => {
-  const ITEMS_ON_PAGE = 5;
+  const ITEMS_ON_PAGE = 10;
   const [unfilteredFood, setUnfilteredFood] = useState([]);
   const [food, setFood] = useState([]);
   const [categories, setCategories] = useState([]);

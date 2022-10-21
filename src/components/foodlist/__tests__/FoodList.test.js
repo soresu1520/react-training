@@ -35,7 +35,7 @@ const food = [
   },
   {
     id: 4,
-    name: "Strawberry Cake",
+    name: "Cake",
     price: 4.5,
     categoryId: "c2",
     image: "scake.png",
@@ -57,12 +57,64 @@ const food = [
     image: "farfalle.png",
     allergens: ["eggs", "wheat"],
   },
+  {
+    id: 7,
+    name: "Pizza",
+    price: 15,
+    categoryId: "c6",
+    image: "pizza.png",
+    allergens: ["eggs", "wheat"],
+  },
+  {
+    id: 8,
+    name: "Sushi",
+    price: 8,
+    categoryId: "c4",
+    image: "sushi.png",
+    allergens: ["soy"],
+  },
+  {
+    id: 9,
+    name: "Burger",
+    price: 6,
+    categoryId: "c6",
+    image: "burger.png",
+    allergens: ["wheat"],
+  },
+  {
+    id: 10,
+    name: "Penne",
+    price: 7,
+    categoryId: "c5",
+    image: "penne.png",
+    allergens: ["eggs", "wheat"],
+  },
+  {
+    id: 11,
+    name: "Fusilli",
+    price: 6.5,
+    categoryId: "c5",
+    image: "fusilli.png",
+    allergens: ["eggs", "wheat"],
+  },
+  {
+    id: 12,
+    name: "Tiramisu",
+    price: 4.5,
+    categoryId: "c2",
+    image: "scake.png",
+    allergens: ["milk"],
+  },
 ];
 
 const categories = [
   {
     categoryName: "Dessert",
     categoryId: "c2",
+  },
+  {
+    categoryName: "Fast Food",
+    categoryId: "c6",
   },
   {
     categoryName: "Japanese",
@@ -94,7 +146,7 @@ it("food list renders with list of food and category buttons", async () => {
   expect(fetchCategories).toHaveBeenCalledTimes(1);
 
   await waitFor(() => {
-    expect(foodList.getAllByTestId("food-card")).toHaveLength(5);
+    expect(foodList.getAllByTestId("food-card")).toHaveLength(10);
     expect(foodList.getAllByTestId("category")).toHaveLength(categories.length + 1);
   });
 });
@@ -106,11 +158,11 @@ it("button loads more food items", async () => {
   const foodList = render(<FoodList />);
 
   await waitFor(() => {
-    expect(foodList.getAllByTestId("food-card")).toHaveLength(5);
+    expect(foodList.getAllByTestId("food-card")).toHaveLength(10);
   });
 
   fireEvent.click(foodList.getByTestId("load-more"));
-  expect(foodList.getAllByTestId("food-card")).toHaveLength(6);
+  expect(foodList.getAllByTestId("food-card")).toHaveLength(12);
 });
 
 it("food is filtered by desserts and then by all categories", async () => {
@@ -120,7 +172,7 @@ it("food is filtered by desserts and then by all categories", async () => {
   const foodList = render(<FoodList />);
 
   await waitFor(() => {
-    expect(foodList.getAllByTestId("food-card")).toHaveLength(5);
+    expect(foodList.getAllByTestId("food-card")).toHaveLength(10);
     expect(foodList.getAllByTestId("category")).toHaveLength(categories.length + 1);
   });
 
@@ -128,13 +180,13 @@ it("food is filtered by desserts and then by all categories", async () => {
   const utils = within(foodList.getByTestId("food-list"));
   fireEvent.click(category);
 
-  expect(foodList.getAllByTestId("food-card")).toHaveLength(2);
+  expect(foodList.getAllByTestId("food-card")).toHaveLength(3);
   expect(utils.getByText("Pancakes")).toBeInTheDocument();
   expect(utils.queryByText("Ramen")).not.toBeInTheDocument();
 
   const all = foodList.getByRole("button", { name: /All/i });
   fireEvent.click(all);
-  expect(foodList.getAllByTestId("food-card")).toHaveLength(5);
+  expect(foodList.getAllByTestId("food-card")).toHaveLength(10);
 });
 
 test("sorting works correctly", async () => {
@@ -144,11 +196,11 @@ test("sorting works correctly", async () => {
   const foodList = render(<FoodList />);
 
   await waitFor(() => {
-    expect(foodList.getAllByTestId("food-card")).toHaveLength(5);
+    expect(foodList.getAllByTestId("food-card")).toHaveLength(10);
   });
 
   fireEvent.change(foodList.getByTestId("sort"), { target: { value: "alphabetDesc" } });
 
   const items = foodList.getAllByTestId("food-card");
-  expect(items[0]).toHaveTextContent("Tacos");
+  expect(items[0]).toHaveTextContent("Tiramisu");
 });

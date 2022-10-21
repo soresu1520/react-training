@@ -5,30 +5,30 @@ exports[`summary price renders correctly 1`] = `
   className="sc-bczRLJ guFtRN"
 >
   <div
-    className="sc-gsnTZi bonspk"
+    className="sc-gsnTZi inqXkk"
   >
     <h4
-      className="sc-hKMtZM kkqmlq"
+      className="sc-hKMtZM cwedSL"
     >
       Subtotal
     </h4>
     <h4
-      className="sc-hKMtZM sc-eCYdqJ kkqmlq ixugEV"
+      className="sc-hKMtZM sc-eCYdqJ cwedSL kEfZbk"
     >
       7
        $
     </h4>
   </div>
   <div
-    className="sc-gsnTZi bonspk"
+    className="sc-gsnTZi inqXkk"
   >
     <h4
-      className="sc-hKMtZM kkqmlq"
+      className="sc-hKMtZM cwedSL"
     >
       Delivery
     </h4>
     <h4
-      className="sc-hKMtZM sc-eCYdqJ kkqmlq ixugEV"
+      className="sc-hKMtZM sc-eCYdqJ cwedSL kEfZbk"
     >
       2.00
        $
@@ -38,15 +38,15 @@ exports[`summary price renders correctly 1`] = `
     className="sc-dkzDqf gBJxRS"
   />
   <div
-    className="sc-gsnTZi bonspk"
+    className="sc-gsnTZi inqXkk"
   >
     <h2
-      className="sc-jSMfEi jVWWNL"
+      className="sc-jSMfEi fpfkPe"
     >
       Total
     </h2>
     <h2
-      className="sc-jSMfEi sc-gKXOVf jVWWNL csYacS"
+      className="sc-jSMfEi sc-gKXOVf fpfkPe bmARjz"
       data-testid="totalPrice"
     >
       9.00
